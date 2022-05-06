@@ -1,0 +1,242 @@
+[[plugins]]
+repo= 'Lokaltog/vim-easymotion'
+hook_add='''
+  let g:EasyMotion_do_mapping = 0
+  let g:EasyMotion_smartcase = 1
+
+  " <Leader>f{char} to move to {char}
+  nmap  <Leader>s <Plug>(easymotion-bd-f)
+  vmap  <Leader>s <Plug>(easymotion-bd-f)
+
+  " s{char}{char} to move to {char}{char}
+  nmap <Leader><Leader>s <Plug>(easymotion-bd-f2)
+  vmap <Leader><Leader>s <Plug>(easymotion-bd-f2)
+
+  " Move to line
+  nmap <Leader>j <Plug>(easymotion-bd-jk)
+  vmap <Leader>j <Plug>(easymotion-bd-jk)
+  nmap <Leader>k <Plug>(easymotion-bd-jk)
+  vmap <Leader>k <Plug>(easymotion-bd-jk)
+'''
+
+# 括弧の対応関係を表示
+[[plugins]]
+repo='itchyny/vim-parenmatch'
+hook_add='''
+  let g:loaded_matchparen = 1
+'''
+
+[[plugins]]
+repo='tyru/caw.vim'
+hook_add='''
+  nmap <Leader>c  <Plug>(caw:hatpos:toggle)
+  vmap <Leader>c  <Plug>(caw:hatpos:toggle)
+  nmap <Leader>C  <Plug>(caw:hatpos:comment)
+  nmap <Leader>U  <Plug>(caw:hatpos:uncomment)
+  vmap <Leader>C  <Plug>(caw:hatpos:comment)
+  vmap <Leader>U  <Plug>(caw:hatpos:uncomment)
+'''
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+
+[[plugins]]
+repo='yonchu/accelerated-smooth-scroll'
+
+[[plugins]]
+repo = 'junegunn/fzf'
+build = './install --bin'
+merged = '0'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+depends = 'fzf'
+hook_add = '''
+  let g:fzf_layout = { 'up': '~60%' }
+  
+  let g:fzf_action = {
+  \ 'Enter' : 'tab split',
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+  nnoremap ;f :Files!<CR>
+  nnoremap ;t :Files!<CR>
+  command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+  nnoremap ;s :GFiles?<CR>
+
+  nnoremap ;g :Rg<CR>
+  command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --hidden '.shellescape(<q-args>), 1,
+  \    fzf#vim#with_preview(), <bang>0)
+'''
+
+[[plugins]]
+repo = 'ryanoasis/vim-devicons'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+hook_add = '''
+  nnoremap <silent> <Leader>i :IndentGuidesToggle<CR>
+  let g:indent_guides_enable_on_vim_startup = 1
+  let g:indent_guides_auto_colors = 0
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=233
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=234
+'''
+
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+  let g:ale_statusline_format = ['E%d', 'W%d', 'ok']
+  let g:ale_set_loclist = 0
+  let g:ale_set_quickfix = 1
+  nmap <silent> <C-n> <Plug>(ale_next_wrap)
+
+  " flake8をLinterとして登録
+  let g:ale_linters = {
+      \ 'python': ['flake8'],
+      \ }
+
+  " 各ツールをFixerとして登録
+  let g:ale_fixers = {
+      \ 'python': ['autopep8', 'isort'],
+      \ }
+  " 各ツールの実行オプションを変更してPythonパスを固定
+  let g:ale_python_flake8_executable = g:python3_host_prog
+  let g:ale_python_flake8_options = '-m flake8 --ignore=I100,I201,D400,B902 --inline-quotes "double"'
+  let g:ale_python_autopep8_executable = g:python3_host_prog
+  let g:ale_python_autopep8_options = '-m autopep8 -a -a'
+  let g:ale_python_isort_executable = g:python3_host_prog
+  let g:ale_python_isort_options = '-m isort'
+  let g:ale_python_black_executable = g:python3_host_prog
+  let g:ale_python_black_options = '-m black'
+
+  " ついでにFixを実行するマッピングしとく
+  nmap <silent> <Leader>x <Plug>(ale_fix)
+  " ファイル保存時に自動的にFixするオプションもあるのでお好みで
+  let g:ale_fix_on_save = 1
+'''
+
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+  function! Fileformat() 
+    return &buftype ==# 'terminal' || &filetype =~# 'denite\|tagbar' ? '' :
+          \ winwidth(0) > 120 ? &fileformat . (exists('*WebDevIconsGetFileFormatSymbol') ? ' ' . WebDevIconsGetFileFormatSymbol() : '') : ''
+  endfunction
+
+  function! Filetype() 
+    return &buftype ==# 'terminal' || &filetype =~# 'denite\|tagbar' ? '' :
+          \ winwidth(0) > 120 ? (strlen(&filetype) ? &filetype . (exists('*WebDevIconsGetFileTypeSymbol') ? ' ' . WebDevIconsGetFileTypeSymbol() : '') : 'no ft') : ''
+  endfunction
+
+  function! Fileencoding() 
+    return &buftype ==# 'terminal' || &filetype =~# 'denite\|tagbar' ? '' :
+          \ winwidth(0) > 120 ? (strlen(&fileencoding) ? &fileencoding : &encoding) : ''
+  endfunction
+
+    let g:lightline = {
+    \ 'active': {
+    \     'left': [ [ 'mode', 'paste' ],
+    \               [ 'readonly', 'filename', 'modified' ] ],
+    \     'right':[ [ 'lineinfo' ],
+    \               [ 'percent' ],
+    \               [ 'fileformat', 'fileencoding', 'filetype' ],
+    \               [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ] ]
+    \   },
+    \  'component': {
+    \    'readonly': ' %R',
+    \    'modified': '%m',
+    \    'filename': '  %t',
+    \    'percent': '%3p%%',
+    \    'lineinfo': '並%3l:%-2v'
+    \  },
+    \  'component_function': {
+    \    'fileformat':   'Fileformat',
+    \    'filetype':     'Filetype',
+    \    'fileencoding': 'Fileencoding',
+    \  },
+  \ }
+'''
+
+[[plugins]]
+repo = 'maximbaz/lightline-ale'
+depends = ['lightline.vim', 'ale']
+hook_add = '''
+let g:lightline#ale#indicator_checking = " \uf110 "
+let g:lightline#ale#indicator_warnings = "\uf071 "
+let g:lightline#ale#indicator_errors = "\uf05e "
+let g:lightline#ale#indicator_ok = "\uf00c "
+let g:lightline.component_expand = {
+      \  'linter_checking': 'lightline#ale#checking',
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ }
+let g:lightline.component_type = {
+      \     'linter_checking': 'left',
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
+      \     'linter_ok': 'left',
+      \ }
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+'''
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add ='''
+let g:deoplete#enable_at_startup = 1
+''' 
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+
+# [[plugins]]
+# repo = 'deoplete-plugins/deoplete-jedi'
+# depends  = ['deoplete', 'nvim-yarp', 'vim-hug-neovim-rpc']
+
+[[plugins]]
+repo = 'Shougo/neosnippet.vim'
+hook_add = '''
+let g:neosnippet#snippets_directory = '~/.config/nvim/snippets'
+
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+'''
+
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+[[plugins]]
+repo = 'cohama/lexima.vim'
+
+[[plugins]]
+repo = "davidhalter/jedi-vim"
+hook_add = '''
+let g:jedi#auto_close_doc = 0
+'''
+
+[[plugins]]
+repo = 'pixelneo/vim-python-docstring'
+hook_add = '''
+let g:python_style = 'google'
+nmap df :Docstring<CR>
+'''

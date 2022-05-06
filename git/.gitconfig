@@ -1,0 +1,52 @@
+[user]
+  name  = ISHIYAMA TOMOYA
+  email = ishiyama.tomoya.gl@tut.jp
+
+[alias]
+  st      = status
+  cho     = checkout
+  chob    = checkout -b
+  b       = branch
+  p       = push
+  c       = commit
+  grh     = !"git log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(bold white)%s%C(reset)  %C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative --color|less -r -R "
+  mg      = merge
+  ff      = merge --ff
+  pin     = push -u origin
+  rename  = commit --amend
+  lg      = log
+  l       = log
+  rereset = reset --hard HEAD@{1}
+  delcm   = reset --soft HEAD^
+  a       = add .
+  deladd  = reset HEAD
+  d       = diff
+[push]
+  default = simple
+
+[core]
+  autoCRLF = false
+  editor = "/usr/bin/nvim"
+
+[commit]
+  template =    ~/.config/git/commit_template
+
+[init]
+templatedir = ~/.config/git
+defaultBranch = master
+  
+
+[ghq]
+  root = ~/src
+
+[merge]
+  ff = false
+
+[pull]
+  ff = only
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
