@@ -8,7 +8,7 @@ ENV TERM=xterm-256color \
 USER root
 RUN apt-get -y update &&\
 	apt-get -y upgrade
-RUN add-apt-repository ppa:neovim-ppa/unstable
+RUN add-apt-repository ppa:neovim-ppa/unstable -y
 RUN apt-get update -y
 RUN apt-get install neovim -y
 USER ${USERNAME}
@@ -50,6 +50,9 @@ COPY --chown=${USERNAME}:${USERNAME} .config/functions    /home/${USERNAME}/.con
 RUN bash -c "$(curl -fsSL https://git.io/zinit-install)"
 RUN echo 'source /home/${USERNAME}/.zinit/zinit_plugin.zsh' >> /home/${USERNAME}/.zshrc
 RUN	SHELL=/bin/zsh zsh -i -c -- 'zinit module build;zinit self-update'
+RUN sudo add-apt-repository ppa:longsleep/golang-backports -y
+RUN sudo apt-get -y update
+RUN sudo apt install golang -y
 RUN go get -u github.com/motemen/ghq
 
 COPY --chown=${USERNAME}:${USERNAME} git/commit_template  /home/${USERNAME}/.config/git/commit_template

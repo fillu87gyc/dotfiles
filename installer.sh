@@ -100,7 +100,7 @@ sudo apt-add-repository https://cli.github.com/packages                        &
 sudo apt-get update                                                            && \
 sudo apt-get install gh
 
-pip install -U flake8 flake8-import-order autopep8 black isort --no-warn-script-location
+pip install -U flake8 flake8-import-order autopep8 black isort rich --no-warn-script-location
 mv /home/icd/.zshrc /home/icd/.zinit_install.zsh
 ln -sf $HOME/dotfiles/zsh/.zprofile /home/icd/.zprofile
 ln -sf $HOME/dotfiles/zsh/.zshrc /home/icd/.zshrc
