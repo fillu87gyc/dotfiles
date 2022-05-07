@@ -48,6 +48,7 @@ pip3 install \
     neovim \
     jedi
 
+mkdir -p $HOME/.config/
 ln -sf $HOME/dotfiles/.config/nvim /home/icd/.config/nvim
 /usr/bin/nvim +":call mkdir(stdpath('config'), 'p')" +qall
 /usr/bin/nvim +":exe 'edit '.stdpath('config').'/init.vim'" +qall
