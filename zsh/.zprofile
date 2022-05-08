@@ -8,3 +8,4 @@ bindkey '^G' ghq-sel
 bindkey '^Y' fzf-z-search
 bindkey '^T' fzf-file-widget
 bindkey '^N' fzf-cd-widget
+setopt share_history
