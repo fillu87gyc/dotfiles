@@ -1,6 +1,5 @@
 [[plugins]]
-repo= 'Lokaltog/vim-easymotion'
-hook_add='''
+hook_add = '''
   let g:EasyMotion_do_mapping = 0
   let g:EasyMotion_smartcase = 1
 
@@ -18,17 +17,17 @@ hook_add='''
   nmap <Leader>k <Plug>(easymotion-bd-jk)
   vmap <Leader>k <Plug>(easymotion-bd-jk)
 '''
+repo = 'Lokaltog/vim-easymotion'
 
 # 括弧の対応関係を表示
 [[plugins]]
-repo='itchyny/vim-parenmatch'
-hook_add='''
+hook_add = '''
   let g:loaded_matchparen = 1
 '''
+repo = 'itchyny/vim-parenmatch'
 
 [[plugins]]
-repo='tyru/caw.vim'
-hook_add='''
+hook_add = '''
   nmap <Leader>c  <Plug>(caw:hatpos:toggle)
   vmap <Leader>c  <Plug>(caw:hatpos:toggle)
   nmap <Leader>C  <Plug>(caw:hatpos:comment)
@@ -36,20 +35,19 @@ hook_add='''
   vmap <Leader>C  <Plug>(caw:hatpos:comment)
   vmap <Leader>U  <Plug>(caw:hatpos:uncomment)
 '''
+repo = 'tyru/caw.vim'
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
 
 [[plugins]]
-repo='yonchu/accelerated-smooth-scroll'
+repo = 'yonchu/accelerated-smooth-scroll'
 
 [[plugins]]
-repo = 'junegunn/fzf'
 build = './install --bin'
-merged = '0'
+repo = 'junegunn/fzf'
 
 [[plugins]]
-repo = 'junegunn/fzf.vim'
 depends = 'fzf'
 hook_add = '''
   let g:fzf_layout = { 'up': '~60%' }
@@ -73,6 +71,7 @@ hook_add = '''
   \   'rg --column --line-number --no-heading --color=always --hidden '.shellescape(<q-args>), 1,
   \    fzf#vim#with_preview(), <bang>0)
 '''
+repo = 'junegunn/fzf.vim'
 
 [[plugins]]
 repo = 'ryanoasis/vim-devicons'
@@ -81,7 +80,6 @@ repo = 'ryanoasis/vim-devicons'
 repo = 'tpope/vim-surround'
 
 [[plugins]]
-repo = 'nathanaelkane/vim-indent-guides'
 hook_add = '''
   nnoremap <silent> <Leader>i :IndentGuidesToggle<CR>
   let g:indent_guides_enable_on_vim_startup = 1
@@ -89,42 +87,59 @@ hook_add = '''
   autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=233
   autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=234
 '''
+repo = 'nathanaelkane/vim-indent-guides'
 
+# LSP (Language Server Protocol)
 [[plugins]]
-repo = 'w0rp/ale'
+repo = 'prabirshrestha/vim-lsp'
+
+# LSP settings
+[[plugins]]
 hook_add = '''
-  let g:ale_statusline_format = ['E%d', 'W%d', 'ok']
-  let g:ale_set_loclist = 0
-  let g:ale_set_quickfix = 1
-  nmap <silent> <C-n> <Plug>(ale_next_wrap)
-
-  " flake8をLinterとして登録
-  let g:ale_linters = {
-      \ 'python': ['flake8'],
-      \ }
-
-  " 各ツールをFixerとして登録
-  let g:ale_fixers = {
-      \ 'python': ['autopep8', 'isort'],
-      \ }
-  " 各ツールの実行オプションを変更してPythonパスを固定
-  let g:ale_python_flake8_executable = g:python3_host_prog
-  let g:ale_python_flake8_options = '-m flake8 --ignore=I100,I201,D400,B902 --inline-quotes "double"'
-  let g:ale_python_autopep8_executable = g:python3_host_prog
-  let g:ale_python_autopep8_options = '-m autopep8 -a -a'
-  let g:ale_python_isort_executable = g:python3_host_prog
-  let g:ale_python_isort_options = '-m isort'
-  let g:ale_python_black_executable = g:python3_host_prog
-  let g:ale_python_black_options = '-m black'
-
-  " ついでにFixを実行するマッピングしとく
-  nmap <silent> <Leader>x <Plug>(ale_fix)
-  " ファイル保存時に自動的にFixするオプションもあるのでお好みで
-  let g:ale_fix_on_save = 1
+  " Enable flake8 and mypy
+  let g:lsp_settings = {
+  \  'pylsp-all': {
+  \    'workspace_config': {
+  \      'pylsp': {
+  \        'configurationSources': ['flake8'],
+  \        'plugins': {
+  \          'pylsp_mypy': {
+  \            'enabled': 1
+  \          }
+  \        }
+  \      }
+  \    }
+  \  }
+  \}
+  let g:lsp_signs_hint = {'text': '💡'}
+  let g:lsp_signs_error = {'text': '❌'}
+  let g:lsp_signs_warning = {'text': '⚠️', 'icon': '/path/to/some/icon'}
+  let g:lsp_diagnostics_signs_error            = {'text': '❌'}
+  let g:lsp_diagnostics_signs_warning          = {'text': '⚠️'}
+  let g:lsp_diagnostics_signs_information      = {'text': '❓'}
+  let g:lsp_diagnostics_signs_hint             = {'text': '💡'}
+  nmap <C-j>     :LspNextDiagnostic<CR>
+  nmap K         :LspHover<CR>
+  autocmd BufWritePre <buffer> LspDocumentFormatSync
 '''
+hook_post_source = '''
+  highlight link LspWarningHighlight Error
+'''
+repo = 'mattn/vim-lsp-settings'
+
+# LSP-lightline bridge
+[[plugins]]
+repo = 'halkn/lightline-lsp'
+
+# Auto completion
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete.vim'
+
+# Auto completion for LSP
+[[plugins]]
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
 
 [[plugins]]
-repo = 'itchyny/lightline.vim'
 hook_add = '''
   function! Fileformat() 
     return &buftype ==# 'terminal' || &filetype =~# 'denite\|tagbar' ? '' :
@@ -148,7 +163,7 @@ hook_add = '''
     \     'right':[ [ 'lineinfo' ],
     \               [ 'percent' ],
     \               [ 'fileformat', 'fileencoding', 'filetype' ],
-    \               [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ] ]
+    \               [ 'lsp_errors', 'lsp_warnings', 'lsp_ok'  ] ]
     \   },
     \  'component': {
     \    'readonly': ' %R',
@@ -162,38 +177,25 @@ hook_add = '''
     \    'filetype':     'Filetype',
     \    'fileencoding': 'Fileencoding',
     \  },
-  \ }
+    \ 'component_expand': {
+    \   'lsp_warnings': 'lightline_lsp#warnings',
+    \   'lsp_errors':   'lightline_lsp#errors',
+    \   'lsp_ok':       'lightline_lsp#ok',
+    \ },
+    \ 'component_type': {
+    \   'lsp_warnings': 'warning',
+    \   'lsp_errors':   'error',
+    \   'lsp_ok':       'middle',
+    \ },
+    \ }
 '''
+repo = 'itchyny/lightline.vim'
 
 [[plugins]]
-repo = 'maximbaz/lightline-ale'
-depends = ['lightline.vim', 'ale']
 hook_add = '''
-let g:lightline#ale#indicator_checking = " \uf110 "
-let g:lightline#ale#indicator_warnings = "\uf071 "
-let g:lightline#ale#indicator_errors = "\uf05e "
-let g:lightline#ale#indicator_ok = "\uf00c "
-let g:lightline.component_expand = {
-      \  'linter_checking': 'lightline#ale#checking',
-      \  'linter_warnings': 'lightline#ale#warnings',
-      \  'linter_errors': 'lightline#ale#errors',
-      \  'linter_ok': 'lightline#ale#ok',
-      \ }
-let g:lightline.component_type = {
-      \     'linter_checking': 'left',
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
-      \     'linter_ok': 'left',
-      \ }
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-'''
-
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-hook_add ='''
 let g:deoplete#enable_at_startup = 1
-''' 
+'''
+repo = 'Shougo/deoplete.nvim'
 
 [[plugins]]
 repo = 'roxma/nvim-yarp'
@@ -201,12 +203,8 @@ repo = 'roxma/nvim-yarp'
 [[plugins]]
 repo = 'roxma/vim-hug-neovim-rpc'
 
-# [[plugins]]
-# repo = 'deoplete-plugins/deoplete-jedi'
-# depends  = ['deoplete', 'nvim-yarp', 'vim-hug-neovim-rpc']
 
 [[plugins]]
-repo = 'Shougo/neosnippet.vim'
 hook_add = '''
 let g:neosnippet#snippets_directory = '~/.config/nvim/snippets'
 
@@ -221,6 +219,7 @@ endif
 
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 '''
+repo = 'Shougo/neosnippet.vim'
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
@@ -229,14 +228,12 @@ repo = 'Shougo/neosnippet-snippets'
 repo = 'cohama/lexima.vim'
 
 [[plugins]]
-repo = "davidhalter/jedi-vim"
-hook_add = '''
-let g:jedi#auto_close_doc = 0
-'''
-
-[[plugins]]
-repo = 'pixelneo/vim-python-docstring'
 hook_add = '''
 let g:python_style = 'google'
 nmap df :Docstring<CR>
 '''
+repo = 'pixelneo/vim-python-docstring'
+
+[[plugins]]
+hook_add = "nmap <leader>w :Isort<CR> :w<CR>"
+repo = 'fisadev/vim-isort'
