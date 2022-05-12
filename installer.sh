@@ -37,7 +37,7 @@ export TERM=xterm-256color  \
 
 sudo apt-get -y update &&\
 sudo apt-get -y upgrade
-sudo add-apt-repository ppa:neovim-ppa/unstable -y
+sudo add-apt-repository ppa:neovim-ppa/stable -y
 sudo apt-get update -y
 sudo apt-get install neovim -y
 sudo npm install neovim -g
@@ -93,7 +93,7 @@ ln -sf $HOME/dotfiles/git/hooks /home/icd/.config/git/hooks
 sudo npm install -g n
 sudo n latest
 git clone --depth 1 https://github.com/rupa/z /home/icd/z &&\
-touch /home/icd/.z
+touch $HOME/.z
 
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0  && \
 sudo apt-add-repository https://cli.github.com/packages                        && \

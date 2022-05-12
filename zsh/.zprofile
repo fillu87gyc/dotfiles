@@ -9,3 +9,5 @@ bindkey '^Y' fzf-z-search
 bindkey '^T' fzf-file-widget
 bindkey '^N' fzf-cd-widget
 setopt share_history
+export DENO_INSTALL="$HOME/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"

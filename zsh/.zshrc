@@ -50,7 +50,6 @@ export FZF_TMUX_HEIGHT=70%
 source ~/.zinit_install.zsh
 
 export HISTFILE=~/.zsh_history
-
 # メモリに保存される履歴の件数
 export HISTSIZE=1000
 
@@ -67,4 +66,14 @@ docker run\
   --rm -it \
   --volume /home/icd/dev_ws:/home/icd/dev_ws \
   --workdir /home/icd/dev_ws \
-  icduser2022/ros2 zsh --login '
+  icduser2022/ros2 zsh --login'
+
+if [ -e /opt/ros/foxy/setup.zsh  ]; then
+  source /opt/ros/foxy/setup.zsh 
+fi
+
+if [ -e  $HOME/dev_ws/install/setup.zsh ]; then
+  source $HOME/dev_ws/install/setup.zsh
+fi
+
+

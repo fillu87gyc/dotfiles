@@ -192,34 +192,28 @@ hook_add = '''
 repo = 'itchyny/lightline.vim'
 
 [[plugins]]
-hook_add = '''
-let g:deoplete#enable_at_startup = 1
-'''
-repo = 'Shougo/deoplete.nvim'
+repo = 'vim-denops/denops.vim'
 
 [[plugins]]
-repo = 'roxma/nvim-yarp'
+repo = 'Shougo/pum.vim'
+
+[[plugins]]
+repo = 'Shougo/ddc-around'
+
+[[plugins]]
+repo = 'LumaKernel/ddc-file'
+
+[[plugins]]
+repo = 'Shougo/ddc-matcher_head'
+
+[[plugins]]
+repo = 'Shougo/ddc-sorter_rank'
+
+[[plugins]]
+repo = 'Shougo/ddc-converter_remove_overlap'
 
 [[plugins]]
 repo = 'roxma/vim-hug-neovim-rpc'
-
-
-[[plugins]]
-hook_add = '''
-let g:neosnippet#snippets_directory = '~/.config/nvim/snippets'
-
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-'''
-repo = 'Shougo/neosnippet.vim'
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
@@ -235,5 +229,10 @@ nmap df :Docstring<CR>
 repo = 'pixelneo/vim-python-docstring'
 
 [[plugins]]
-hook_add = "nmap <leader>w :Isort<CR> :w<CR>"
+hook_add = '''
+  autocmd BufWritePre <buffer> Isort
+'''
 repo = 'fisadev/vim-isort'
+
+[[plugins]]
+repo = 'ray-x/lsp_signature.nvim'

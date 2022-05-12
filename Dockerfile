@@ -1,36 +1,36 @@
-FROM icduser/ubuntu-pure
+FROM icduser2022/ubuntu-pure
 ARG USERNAME=icd
 ENV TERM=xterm-256color \
-	COLORTERM=truecolor \
-	XDG_CONFIG_HOME=/home/${USERNAME}/.config \
-	TZ=Asia/Tokyo \
-	DEBIAN_FRONTEND=noninteractive
+    COLORTERM=truecolor \
+    XDG_CONFIG_HOME=/home/${USERNAME}/.config \
+    TZ=Asia/Tokyo \
+    DEBIAN_FRONTEND=noninteractive
 USER root
 RUN apt-get -y update &&\
-	apt-get -y upgrade
-RUN add-apt-repository ppa:neovim-ppa/unstable -y
-RUN apt-get update -y
-RUN apt-get install neovim -y
+    apt-get -y upgrade &&\
+    add-apt-repository ppa:neovim-ppa/stable -y &&\
+    apt-get update -y &&\
+    apt-get install -y \
+    neovim  \
+    python3.8-venv
 USER ${USERNAME}
 WORKDIR /home/${USERNAME}
-RUN sudo npm install neovim -g
-
-RUN pip3 install \
-	wheel\
-	powerline-status\
-	neovim \
-  jedi
+RUN sudo npm install neovim -g &&\
+    pip3 install -U \
+    wheel\
+    powerline-status\
+    neovim \
+    jedi 
 
 COPY --chown=${USERNAME}:${USERNAME} .config/nvim /home/${USERNAME}/.config/nvim
-RUN sudo update-alternatives --install $(which vim) vim $(which nvim) 99
-RUN sudo update-alternatives --config vim
+# RUN sudo update-alternatives --install $(which vim) vim $(which nvim) 99
+# RUN sudo update-alternatives --config vim
 RUN mkdir -p /home/${USERNAME}/.cache/dein
 WORKDIR /home/${USERNAME}/.cache/dein
-RUN curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ./installer.sh
-RUN sh ./installer.sh /home/${USERNAME}/.cache/dein
-RUN nvim +"UpdateRemotePlugins" +qall
+RUN curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > ./installer.sh &&\
+    sh ./installer.sh /home/${USERNAME}/.cache/dein &&\
+    nvim +"UpdateRemotePlugins" +qall
 WORKDIR /home/${USERNAME}
-
 # #-------p10k------
 # RUN /tmp/installer/p10k.sh
 # COPY --chown=${USERNAME}:${USERNAME} zsh/powerlevel10k.zsh-theme /home/${USERNAME}/app/powerlevel10k/powerlevel10k.zsh-theme
@@ -47,29 +47,27 @@ COPY --chown=${USERNAME}:${USERNAME} zsh/zinit_plugin.zsh /home/${USERNAME}/.zin
 COPY --chown=${USERNAME}:${USERNAME} zsh/cd_push.zsh      /home/${USERNAME}/.config/zsh/cd_push.zsh
 COPY --chown=${USERNAME}:${USERNAME} .config/functions    /home/${USERNAME}/.config/functions
 
-RUN bash -c "$(curl -fsSL https://git.io/zinit-install)"
-RUN echo 'source /home/${USERNAME}/.zinit/zinit_plugin.zsh' >> /home/${USERNAME}/.zshrc
-RUN	SHELL=/bin/zsh zsh -i -c -- 'zinit module build;zinit self-update'
-RUN sudo add-apt-repository ppa:longsleep/golang-backports -y
-RUN sudo apt-get -y update
-RUN sudo apt install golang -y
-RUN go get -u github.com/motemen/ghq
-
+RUN bash -c "$(curl -fsSL https://git.io/zinit-install)" &&\
+    echo 'source /home/${USERNAME}/.zinit/zinit_plugin.zsh' >> /home/${USERNAME}/.zshrc &&\
+    SHELL=/bin/zsh zsh -i -c -- 'zinit module build;zinit self-update' &&\
+    sudo add-apt-repository ppa:longsleep/golang-backports -y &&\
+    sudo apt-get -y update &&\
+    sudo apt install golang -y &&\
+    go install github.com/x-motemen/ghq@latest
 COPY --chown=${USERNAME}:${USERNAME} git/commit_template  /home/${USERNAME}/.config/git/commit_template
 COPY --chown=${USERNAME}:${USERNAME} git/hooks  /home/${USERNAME}/.config/git/hooks
 
-RUN sudo npm install -g n
-RUN sudo n latest
-RUN git clone --depth 1 https://github.com/rupa/z /home/${USERNAME}/z &&\
-	touch /home/${USERNAME}/.z
+RUN sudo npm install -g n &&\
+    sudo n latest &&\
+    git clone --depth 1 https://github.com/rupa/z /home/${USERNAME}/z &&\
+    touch /home/${USERNAME}/.z
 
 RUN sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0  && \
     sudo apt-add-repository https://cli.github.com/packages                        && \
     sudo apt-get update                                                            && \
-    sudo apt-get install gh
-
-RUN pip install -U flake8 flake8-import-order autopep8 black isort
-RUN mv /home/${USERNAME}/.zshrc /home/${USERNAME}/.zinit_install.zsh
+    sudo apt-get install gh &&\
+    pip install -U flake8 flake8-import-order autopep8 black isort &&\
+    mv /home/${USERNAME}/.zshrc /home/${USERNAME}/.zinit_install.zsh
 COPY --chown=${USERNAME}:${USERNAME} zsh/.zprofile /home/${USERNAME}/.zprofile
 COPY --chown=${USERNAME}:${USERNAME} zsh/.zshrc /home/${USERNAME}/.zshrc
 COPY --chown=${USERNAME}:${USERNAME} zsh/gitstatusd-linux-x86_64 /home/${USERNAME}/.cache/gitstatus/
