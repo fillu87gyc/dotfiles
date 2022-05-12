@@ -69,4 +69,5 @@ let g:python3_host_prog = '/usr/bin/python3'
 
 nmap <F5> :!python3 %<CR>
 source ~/.config/nvim/.vim/dein_config.vim
-source ~/.config/nvim/.vim/SyntaxInfo.vim
+colorscheme hybrid
+
