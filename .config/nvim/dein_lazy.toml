@@ -1,6 +1,7 @@
 [[plugins]]
-hook_add = '''
-  autocmd BufWritePre <buffer> Isort
+hook_source = '''
+let g:context_filetype#ignore_patterns = {
+    \ 'toml': ['^\s*#\s*'],
+    \ }
 '''
-on_ft = ['python']
-repo = 'fisadev/vim-isort'
+repo = 'Shougo/context_filetype.vim'

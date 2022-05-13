@@ -121,6 +121,13 @@ hook_add = '''
 '''
 repo = 'prabirshrestha/vim-lsp'
 
+[[plugins]]
+hook_add = '''
+  autocmd BufWritePre *.py Isort
+'''
+on_ft = ['python']
+repo = 'fisadev/vim-isort'
+
 # LSP settings
 [[plugins]]
 hook_add = '''
