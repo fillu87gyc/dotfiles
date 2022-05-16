@@ -95,13 +95,10 @@ hook_add = '''
   function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> gd <plug>(lsp-peek-definition)
-    nmap <buffer> gs <plug>(lsp-document-symbol-search)
-    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
-    nmap <buffer> gr <plug>(lsp-references)
-    nmap <buffer> gi <plug>(lsp-implementation)
-    nmap <buffer> gt <plug>(lsp-type-definition)
-    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> df <plug>(lsp-peek-definition)
+    nmap <buffer> dr <plug>(lsp-references)
+    nmap <buffer> dt <plug>(lsp-type-definition)
+    nmap <buffer> dn <plug>(lsp-rename)
     nmap <buffer> <C-j> <plug>(lsp-next-diagnostic)
     nmap <buffer> K <plug>(lsp-hover)
     let g:lsp_diagnostics_enabled = 1
@@ -110,7 +107,7 @@ hook_add = '''
     let g:lsp_document_code_action_signs_enabled = 1
 
     let g:lsp_format_sync_timeout = 1300
-    autocmd! BufWritePre <buffer> call execute('LspDocumentFormatSync')
+    autocmd BufWritePre <buffer> call execute('LspDocumentFormatSync')
   endfunction
 
   augroup lsp_install
@@ -256,7 +253,7 @@ repo = 'cohama/lexima.vim'
 [[plugins]]
 hook_add = '''
 let g:python_style = 'google'
-nmap df :Docstring<CR>
+nmap ds :Docstring<CR>
 '''
 repo = 'pixelneo/vim-python-docstring'
 
@@ -274,7 +271,7 @@ hook_post_source = '''
     \   'sorters': ['sorter_rank'],
     \   'converters': ['converter_remove_overlap'],
     \ },
-    \ 'around': {'mark': 'AROUND'},
+    \ 'around': {'mark': 'Around'},
     \ 'vim-lsp': {
     \   'mark': 'LSP', 
     \   'matchers': ['matcher_head'],
