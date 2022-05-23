@@ -96,6 +96,7 @@ hook_add = '''
     setlocal omnifunc=lsp#complete
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
     nmap <buffer> df <plug>(lsp-peek-definition)
+    nmap <buffer> de <plug>(lsp-definition)
     nmap <buffer> dr <plug>(lsp-references)
     nmap <buffer> dt <plug>(lsp-type-definition)
     nmap <buffer> dn <plug>(lsp-rename)
@@ -253,7 +254,7 @@ repo = 'cohama/lexima.vim'
 [[plugins]]
 hook_add = '''
 let g:python_style = 'google'
-nmap ds :Docstring<CR>
+nmap gd :Docstring<CR>
 '''
 repo = 'pixelneo/vim-python-docstring'
 
