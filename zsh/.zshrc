@@ -35,7 +35,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*" 2> /de
 export FZF_DEFAULT_OPTS='--height 80% --reverse --border --preview "batcat --color=always --style=header,grid --line-range :100 {}"'
 export FZF_FIND_FILE_COMMAND='rg --files --hidden --follow --glob "!.git/*" 2> /dev/null'
 export FZF_FIND_OPTS='--height 80% --reverse --border --preview "batcat --color=always --style=header,grid --line-range :100 {}"'
-export FZF_CD_COMMAND='find . -type d -name '.git' -prune -o -type d -print 2> /dev/null'
+export FZF_CD_COMMAND='find . -type d -name '.git' -prune -o -type d -follow -print 2> /dev/null'
 export FZF_CD_OPTS='--height 80% --reverse --border --preview "exa -ahH --git --git-ignore --tree -L 2 --icons --color=always {} | head -200"'
 
 #ライブラリの変更に合わせる
