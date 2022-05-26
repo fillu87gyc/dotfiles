@@ -25,11 +25,12 @@ alias g='git'
 alias k='k -A' # 隠しファイルを含める
 autoload -Uz compinit && compinit
 setopt auto_cd
-export PATH=~/.gem/ruby/2.7.0/bin:$PATH
-export PATH=~/.local/share/gem/ruby/2.7.0/bin:$PATH
-export PATH=~/src/go/bin:$PATH
-export PATH=~/.local/bin:$PATH
-export PATH=~/go/bin:$PATH
+export PATH=$HOME/.gem/ruby/2.7.0/bin:$PATH
+export PATH=$HOME/.local/share/gem/ruby/2.7.0/bin:$PATH
+export PATH=$HOME/src/go/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/go/bin:$PATH
+export PATH=$HOME/dotfiles/shell:$PATH
 export XDG_CONFIG_HOME=~/.config
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*" 2> /dev/null'
 export FZF_DEFAULT_OPTS='--height 80% --reverse --border --preview "batcat --color=always --style=header,grid --line-range :100 {}"'
