@@ -5,22 +5,22 @@ ENV TERM=xterm-256color \
     XDG_CONFIG_HOME=/home/${USERNAME}/.config \
     TZ=Asia/Tokyo \
     DEBIAN_FRONTEND=noninteractive
-USER root
-RUN apt-get -y update &&\
-    apt-get -y upgrade &&\
-    add-apt-repository ppa:neovim-ppa/stable -y &&\
-    apt-get update -y &&\
-    apt-get install -y \
-    neovim  \
-    python3.8-venv
-USER ${USERNAME}
-WORKDIR /home/${USERNAME}
-RUN sudo npm install neovim -g &&\
-    pip3 install -U \
-    wheel\
-    powerline-status\
-    neovim \
-    jedi 
+# USER root
+# RUN apt-get -y update &&\
+#     apt-get -y upgrade &&\
+#     add-apt-repository ppa:neovim-ppa/stable -y &&\
+#     apt-get update -y &&\
+#     apt-get install -y \
+#     neovim  \
+#     python3.8-venv
+# USER ${USERNAME}
+# WORKDIR /home/${USERNAME}
+# RUN sudo npm install neovim -g &&\
+#     pip3 install -U \
+#     wheel\
+#     powerline-status\
+#     neovim \
+#     jedi 
 # 
 # COPY --chown=${USERNAME}:${USERNAME} .config/nvim /home/${USERNAME}/.config/nvim
 # # RUN sudo update-alternatives --install $(which vim) vim $(which nvim) 99
@@ -74,6 +74,7 @@ WORKDIR /home/${USERNAME}
 # RUN sudo chown ${USERNAME}:${USERNAME} /home/${USERNAME}/.config
 # # 
 # # ----------------------------ここからしたinstaller.shに未適用----------------------
-RUN pip install rich --no-warn-script-location -U
 # CMD /bin/zsh --login
 COPY --chown=${USERNAME}:${USERNAME} . /home/${USERNAME}/dotfiles
+RUN /home/${USERNAME}/dotfiles/installer.sh
+CMD /bin/zsh --login

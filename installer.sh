@@ -1,34 +1,34 @@
 set -eu
 export USERNAME=icd
-sudo apt-get update -y && sudo apt-get upgrade -y
-sudo  apt-get -y install   \
-	bat   \
-	clang   \
-	curl   \
-	fish   \
-	fzf   \
-	gist   \
-	hub   \
-	jq   \
-	neovim   \
-	nnn   \
-	nodejs   \
-	npm   \
-	sed   \
-	tig   \
-	tmux   \
-	tree   \
-	vim   \
-	wget   \
-	zsh   \
-	peco   \
-	xclip \
-	python3-pip
-curl https://sh.rustup.rs -sSf > /tmp/rust_init.sh &&  \
-	chmod 755 /tmp/rust_init.sh  &&  \
-	/tmp/rust_init.sh -y > /dev/null 2>&1 &&  \
-	. ~/.cargo/env > /dev/null 2>&1 &&  \
-	$HOME/.cargo/bin/cargo install exa ripgrep 
+# sudo apt-get update -y && sudo apt-get upgrade -y
+# sudo  apt-get -y install   \
+# 	bat   \
+# 	clang   \
+# 	curl   \
+# 	fish   \
+# 	fzf   \
+# 	gist   \
+# 	hub   \
+# 	jq   \
+# 	neovim   \
+# 	nnn   \
+# 	nodejs   \
+# 	npm   \
+# 	sed   \
+# 	tig   \
+# 	tmux   \
+# 	tree   \
+# 	vim   \
+# 	wget   \
+# 	zsh   \
+# 	peco   \
+# 	xclip \
+# 	python3-pip
+# curl https://sh.rustup.rs -sSf > /tmp/rust_init.sh &&  \
+# 	chmod 755 /tmp/rust_init.sh  &&  \
+# 	/tmp/rust_init.sh -y > /dev/null 2>&1 &&  \
+# 	. ~/.cargo/env > /dev/null 2>&1 &&  \
+# 	$HOME/.cargo/bin/cargo install exa ripgrep 
 export TERM=xterm-256color  \
 	COLORTERM=truecolor  \
 	XDG_CONFIG_HOME=$HOME/.config  \
@@ -99,7 +99,7 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0  &
 sudo apt-add-repository https://cli.github.com/packages                        && \
 sudo apt-get update                                                            && \
 sudo apt-get install gh
-
+curl -fsSL https://deno.land/install.sh | sh
 pip install -U flake8 flake8-import-order autopep8 black isort rich --no-warn-script-location
 mv /home/icd/.zshrc /home/icd/.zinit_install.zsh
 ln -sf $HOME/dotfiles/zsh/.zprofile /home/icd/.zprofile
