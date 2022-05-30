@@ -89,35 +89,6 @@ hook_add = '''
 '''
 repo = 'nathanaelkane/vim-indent-guides'
 
-# LSP (Language Server Protocol)
-[[plugins]]
-hook_add = '''
-  function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> df <plug>(lsp-peek-definition)
-    nmap <buffer> de <plug>(lsp-definition)
-    nmap <buffer> dr <plug>(lsp-references)
-    nmap <buffer> dt <plug>(lsp-type-definition)
-    nmap <buffer> dn <plug>(lsp-rename)
-    nmap <buffer> <C-j> <plug>(lsp-next-diagnostic)
-    nmap <buffer> K <plug>(lsp-hover)
-    let g:lsp_diagnostics_enabled = 1
-    let g:lsp_diagnostics_signs_enabled = 1
-    let g:lsp_document_highlight_enabled = 1
-    let g:lsp_document_code_action_signs_enabled = 1
-
-    let g:lsp_format_sync_timeout = 1300
-    autocmd BufWritePre <buffer> call execute('LspDocumentFormatSync')
-  endfunction
-
-  augroup lsp_install
-      au!
-      " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-      autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-  augroup END
-'''
-repo = 'prabirshrestha/vim-lsp'
 
 [[plugins]]
 hook_add = '''
@@ -161,14 +132,14 @@ repo = 'mattn/vim-lsp-settings'
 [[plugins]]
 repo = 'halkn/lightline-lsp'
 
-# Auto completion
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete.vim'
-
-# Auto completion for LSP
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete-lsp.vim'
-
+# # Auto completion
+# [[plugins]]
+# repo = 'prabirshrestha/asyncomplete.vim'
+# 
+# # Auto completion for LSP
+# [[plugins]]
+# repo = 'prabirshrestha/asyncomplete-lsp.vim'
+# 
 [[plugins]]
 hook_add = '''
   function! Fileformat() 
@@ -220,27 +191,37 @@ hook_add = '''
     \ }
 '''
 repo = 'itchyny/lightline.vim'
+[[plugins]]
+hook_source = '''
+  function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> df <plug>(lsp-peek-definition)
+    nmap <buffer> de <plug>(lsp-definition)
+    nmap <buffer> dr <plug>(lsp-references)
+    nmap <buffer> dt <plug>(lsp-type-definition)
+    nmap <buffer> dn <plug>(lsp-rename)
+    nmap <buffer> <C-j> <plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+    let g:lsp_diagnostics_enabled = 1
+    let g:lsp_diagnostics_signs_enabled = 1
+    let g:lsp_document_highlight_enabled = 1
+    let g:lsp_document_code_action_signs_enabled = 1
+
+    let g:lsp_format_sync_timeout = 1300
+    autocmd BufWritePre <buffer> call execute('LspDocumentFormatSync')
+  endfunction
+
+  augroup lsp_install
+      au!
+      " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+      autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+  augroup END
+'''
+repo = 'prabirshrestha/vim-lsp'
 
 [[plugins]]
 repo = 'vim-denops/denops.vim'
-
-[[plugins]]
-repo = 'Shougo/pum.vim'
-
-[[plugins]]
-repo = 'Shougo/ddc-around'
-
-[[plugins]]
-repo = 'LumaKernel/ddc-file'
-
-[[plugins]]
-repo = 'Shougo/ddc-matcher_head'
-
-[[plugins]]
-repo = 'Shougo/ddc-sorter_rank'
-
-[[plugins]]
-repo = 'Shougo/ddc-converter_remove_overlap'
 
 [[plugins]]
 repo = 'roxma/vim-hug-neovim-rpc'
@@ -257,34 +238,3 @@ let g:python_style = 'google'
 nmap gd :Docstring<CR>
 '''
 repo = 'pixelneo/vim-python-docstring'
-
-[[plugins]]
-hook_add = '''
-call ddc#custom#patch_global('completionMenu', 'pum.vim')
-call ddc#custom#patch_global('sources', [
- \ 'around',
- \ 'vim-lsp',
- \ 'file'
- \ ])
-call ddc#custom#patch_global('sourceOptions', {
- \ '_': {
- \   'matchers': ['matcher_head'],
- \   'sorters': ['sorter_rank'],
- \   'converters': ['converter_remove_overlap'],
- \ },
- \ 'around': {'mark': 'Around'},
- \ 'vim-lsp': {
- \   'mark': 'LSP', 
- \   'matchers': ['matcher_head'],
- \   'forceCompletionPattern': '\.|:|->|"\w+/*'
- \ },
- \ 'file': {
- \   'mark': 'file',
- \   'isVolatile': v:true, 
- \   'forceCompletionPattern': '\S/\S*'
- \ }})
-call ddc#enable()
-inoremap <C-n> <Cmd>call pum#map#insert_relative(+1)<CR>
-inoremap <C-p> <Cmd>call pum#map#insert_relative(-1)<CR>
-'''
-repo = 'Shougo/ddc.vim'
