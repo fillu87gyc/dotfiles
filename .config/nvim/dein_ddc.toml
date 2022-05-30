@@ -1,70 +1,111 @@
 # ddc.vim遅延読み込み用のdein.toml
+# ddc.vim {{{
 [[plugins]]
+repo        = 'Shougo/ddc.vim'
+depends     = ['denops.vim']
+on_event    = 'InsertEnter'
 hook_source = '''
-call ddc#custom#patch_global('completionMenu', ['pum.vim'])
-call ddc#custom#patch_global('sources', [
- \ 'around',
- \ 'vim-lsp',
- \ 'file'
- \ ])
-call ddc#custom#patch_global('sourceOptions', {
- \ '_': {
- \   'matchers': ['matcher_head'],
- \   'sorters': ['sorter_rank'],
- \   'converters': ['converter_remove_overlap']
- \ },
- \ 'around': {
- \   'mark': 'around'
- \ },
- \ 'vim-lsp': {
- \   'mark': 'LSP', 
- \   'matchers': ['matcher_head'],
- \   'forceCompletionPattern': '\.|:|->|"\w+/*'
- \ },
- \ 'file': {
- \   'mark': 'file',
- \   'isVolatile': v:true, 
- \   'forceCompletionPattern': '\S/\S*'
- \ }})
-call ddc#enable()
-inoremap <C-n> <Cmd>call pum#map#insert_relative(+1)<CR>
-inoremap <C-p> <Cmd>call pum#map#insert_relative(-1)<CR>
+    call ddc#custom#patch_filetype(['vim'], {
+    \   'keywordPattern': '[a-zA-Z_][a-zA-Z_0-9:#]*',
+    \   })
+    call ddc#custom#patch_global('sources', [
+    \   'around',
+    \   'mocword',
+    \   'nvim-lsp',
+    \   'vsnip',
+    \   ])
+    call ddc#custom#patch_global('sourceOptions', {
+    \   'around': {
+    \       'mark': 'Around',
+    \   },
+    \   'mocword': {
+    \       'mark': 'MOC',
+    \       'minAutoCompleteLength': 4,
+    \       'isVolatile': v:true,
+    \   },
+    \   'nvim-lsp': {
+    \       'mark': 'Lsp',
+    \       'forceCompletionPattern': '\.\w*|:\w*|->\w*',
+    \   },
+    \   '_': {
+    \       'matchers': ['matcher_head'],
+    \       'sorters': ['sorter_rank'],
+    \   },
+    \   })
+    call ddc#enable()
 '''
-repo = 'Shougo/ddc.vim'
+[[plugins]]
+repo='vim-denops/denops.vim'
 
 [[plugins]]
-repo = 'Shougo/ddc-around'
+repo      = 'Shougo/ddc-around'
+on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'Shougo/pum.vim'
+repo      = 'Shougo/ddc-converter_remove_overlap'
+on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'LumaKernel/ddc-file'
+repo      = 'Shougo/ddc-matcher_head'
+on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'Shougo/ddc-converter_remove_overlap'
+repo      = 'Shougo/ddc-nvim-lsp'
+on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'Shougo/ddc-matcher_head'
+repo      = 'Shougo/ddc-sorter_rank'
+on_source = 'ddc.vim'
 
 [[plugins]]
-repo = 'Shougo/ddc-nextword'
+repo = 'neovim/nvim-lspconfig'
+on_event = 'BufEnter'
+hook_source= '''
+lua << EOF
+local lsp_installer = require("nvim-lsp-installer")
+lsp_installer.on_server_ready(function(server)
+  local opts = {}
+  server:setup(opts)
+end)
+EOF
+'''
 
 [[plugins]]
-repo = 'Shougo/ddc-nvim-lsp'
+repo = 'williamboman/nvim-lsp-installer'
+on_source = 'nvim-lspconfig'
 
 [[plugins]]
-repo = 'Shougo/ddc-sorter_rank'
+repo        = 'matsui54/denops-signature_help'
+on_source   = 'ddc.vim'
+hook_source = '''
+call signature_help#enable()
+'''
 
 [[plugins]]
+repo        = 'matsui54/denops-popup-preview.vim'
+on_source   = 'ddc.vim'
 hook_source = '''
 call popup_preview#enable()
 '''
-repo = 'matsui54/denops-popup-preview.vim'
+# }}}
+
+# vim-vsnip {{{
+[[plugins]]
+repo     = 'hrsh7th/vim-vsnip'
+on_event = 'InsertEnter'
+depends  = ['vim-vsnip-integ', 'friendly-snippets']
+hook_add = '''
+imap <expr> <C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-j>'
+smap <expr> <C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-j>'
+imap <expr> <C-f> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-f>'
+smap <expr> <C-f> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-f>'
+imap <expr> <C-b> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
+smap <expr> <C-b> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
+let g:vsnip_filetypes = {}
+'''
 
 [[plugins]]
-hook_source = '''
-call signature_help#enable()
-let g:lsp_signature_help_enabled = 0
-'''
-repo = 'matsui54/denops-signature_help'
+repo = 'hrsh7th/vim-vsnip-integ'
+
+[[plugins]]
+repo = 'rafamadriz/friendly-snippets'

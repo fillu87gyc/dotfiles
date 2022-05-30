@@ -37,7 +37,7 @@ export TERM=xterm-256color  \
 
 sudo apt-get -y update &&\
 sudo apt-get -y upgrade
-sudo add-apt-repository ppa:neovim-ppa/stable -y
+sudo add-apt-repository ppa:neovim-ppa/unstable -y
 sudo apt-get update -y
 sudo apt-get install neovim -y
 sudo npm install neovim -g
