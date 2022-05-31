@@ -38,6 +38,10 @@ hook_source = '''
 repo='vim-denops/denops.vim'
 
 [[plugins]]
+repo='Shougo/ddc-mocword'
+on_source = 'ddc.vim'
+
+[[plugins]]
 repo      = 'Shougo/ddc-around'
 on_source = 'ddc.vim'
 
@@ -69,6 +73,10 @@ lsp_installer.on_server_ready(function(server)
 end)
 EOF
 '''
+hook_add = '''
+" autoformat
+autocmd BufWritePre *.py lua vim.lsp.buf.formatting_sync(nil, 1000)
+'''
 
 [[plugins]]
 repo = 'williamboman/nvim-lsp-installer'
@@ -87,25 +95,24 @@ on_source   = 'ddc.vim'
 hook_source = '''
 call popup_preview#enable()
 '''
-# }}}
-
-# vim-vsnip {{{
-[[plugins]]
-repo     = 'hrsh7th/vim-vsnip'
-on_event = 'InsertEnter'
-depends  = ['vim-vsnip-integ', 'friendly-snippets']
-hook_add = '''
-imap <expr> <C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-j>'
-smap <expr> <C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-j>'
-imap <expr> <C-f> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-f>'
-smap <expr> <C-f> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-f>'
-imap <expr> <C-b> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
-smap <expr> <C-b> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
-let g:vsnip_filetypes = {}
-'''
-
-[[plugins]]
-repo = 'hrsh7th/vim-vsnip-integ'
-
-[[plugins]]
-repo = 'rafamadriz/friendly-snippets'
+# 
+# [[plugins]]
+# repo     = 'hrsh7th/vim-vsnip'
+# on_event = 'InsertEnter'
+# depends  = ['vim-vsnip-integ', 'friendly-snippets','ddc.vim']
+# hook_source = '''
+# imap <expr> <C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-j>'
+# smap <expr> <C-j> vsnip#expandable() ? '<Plug>(vsnip-expand)' : '<C-j>'
+# imap <expr> <C-f> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-f>'
+# smap <expr> <C-f> vsnip#jumpable(1)  ? '<Plug>(vsnip-jump-next)' : '<C-f>'
+# imap <expr> <C-b> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
+# smap <expr> <C-b> vsnip#jumpable(-1) ? '<Plug>(vsnip-jump-prev)' : '<C-b>'
+# let g:vsnip_filetypes = {}
+# '''
+# 
+# [[plugins]]
+# repo = 'hrsh7th/vim-vsnip-integ'
+# 
+# [[plugins]]
+# repo = 'rafamadriz/friendly-snippets'
+# 

@@ -77,3 +77,4 @@ if [ -e  $HOME/dev_ws/install/setup.zsh ]; then
   source $HOME/dev_ws/install/setup.zsh
 fi
 
+export MOCWORD_DATA=$HOME/.local/lib/mocword.sqlite
