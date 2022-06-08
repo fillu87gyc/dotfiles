@@ -79,16 +79,24 @@ repo = 'ryanoasis/vim-devicons'
 [[plugins]]
 repo = 'tpope/vim-surround'
 
+# [[plugins]]
+# hook_add = '''
+#   nnoremap <silent> <Leader>i :IndentGuidesToggle<CR>
+#   let g:indent_guides_enable_on_vim_startup = 1
+#   let g:indent_guides_start_level = 2
+#   let g:indent_guides_guide_size = 1
+#   " let g:indent_guides_auto_colors = 0
+#   " autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=237
+#   " autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
+# '''
+# repo = 'nathanaelkane/vim-indent-guides'
+# 
 [[plugins]]
+repo = 'Yggdroot/indentLine'
 hook_add = '''
-  nnoremap <silent> <Leader>i :IndentGuidesToggle<CR>
-  let g:indent_guides_enable_on_vim_startup = 1
-  let g:indent_guides_auto_colors = 0
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=237
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 '''
-repo = 'nathanaelkane/vim-indent-guides'
-
+ 
 
 [[plugins]]
 hook_add = '''
