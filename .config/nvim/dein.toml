@@ -79,45 +79,24 @@ repo = 'ryanoasis/vim-devicons'
 [[plugins]]
 repo = 'tpope/vim-surround'
 
+# [[plugins]]
+# hook_add = '''
+#   nnoremap <silent> <Leader>i :IndentGuidesToggle<CR>
+#   let g:indent_guides_enable_on_vim_startup = 1
+#   let g:indent_guides_start_level = 2
+#   let g:indent_guides_guide_size = 1
+#   " let g:indent_guides_auto_colors = 0
+#   " autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=237
+#   " autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
+# '''
+# repo = 'nathanaelkane/vim-indent-guides'
+# 
 [[plugins]]
+repo = 'Yggdroot/indentLine'
 hook_add = '''
-  nnoremap <silent> <Leader>i :IndentGuidesToggle<CR>
-  let g:indent_guides_enable_on_vim_startup = 1
-  let g:indent_guides_auto_colors = 0
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=237
-  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 '''
-repo = 'nathanaelkane/vim-indent-guides'
-
-# LSP (Language Server Protocol)
-[[plugins]]
-hook_add = '''
-  function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> df <plug>(lsp-peek-definition)
-    nmap <buffer> de <plug>(lsp-definition)
-    nmap <buffer> dr <plug>(lsp-references)
-    nmap <buffer> dt <plug>(lsp-type-definition)
-    nmap <buffer> dn <plug>(lsp-rename)
-    nmap <buffer> <C-j> <plug>(lsp-next-diagnostic)
-    nmap <buffer> K <plug>(lsp-hover)
-    let g:lsp_diagnostics_enabled = 1
-    let g:lsp_diagnostics_signs_enabled = 1
-    let g:lsp_document_highlight_enabled = 1
-    let g:lsp_document_code_action_signs_enabled = 1
-
-    let g:lsp_format_sync_timeout = 1300
-    autocmd BufWritePre <buffer> call execute('LspDocumentFormatSync')
-  endfunction
-
-  augroup lsp_install
-      au!
-      " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-      autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-  augroup END
-'''
-repo = 'prabirshrestha/vim-lsp'
+ 
 
 [[plugins]]
 hook_add = '''
@@ -126,49 +105,49 @@ hook_add = '''
 on_ft = ['python']
 repo = 'fisadev/vim-isort'
 
-# LSP settings
-[[plugins]]
-hook_add = '''
-  " Enable flake8 and mypy
-  let g:lsp_settings = {
-  \  'pylsp-all': {
-  \    'workspace_config': {
-  \      'pylsp': {
-  \        'configurationSources': ['flake8'],
-  \        'plugins': {
-  \          'pylsp_mypy': {
-  \            'enabled': 1
-  \          }
-  \        }
-  \      }
-  \    }
-  \  }
-  \}
-  let g:lsp_signs_hint = {'text': '💡'}
-  let g:lsp_signs_error = {'text': '❌'}
-  let g:lsp_signs_warning = {'text': '⚠️', 'icon': '/path/to/some/icon'}
-  let g:lsp_diagnostics_signs_error            = {'text': '❌'}
-  let g:lsp_diagnostics_signs_warning          = {'text': '⚠️'}
-  let g:lsp_diagnostics_signs_information      = {'text': '❓'}
-  let g:lsp_diagnostics_signs_hint             = {'text': '💡'}
-'''
-hook_post_source = '''
-  highlight link LspWarningHighlight Error
-'''
-repo = 'mattn/vim-lsp-settings'
+# # LSP settings
+# [[plugins]]
+# hook_add = '''
+#   " Enable flake8 and mypy
+#   let g:lsp_settings = {
+#   \  'pylsp-all': {
+#   \    'workspace_config': {
+#   \      'pylsp': {
+#   \        'configurationSources': ['flake8'],
+#   \        'plugins': {
+#   \          'pylsp_mypy': {
+#   \            'enabled': 1
+#   \          }
+#   \        }
+#   \      }
+#   \    }
+#   \  }
+#   \}
+#   let g:lsp_signs_hint = {'text': '💡'}
+#   let g:lsp_signs_error = {'text': '❌'}
+#   let g:lsp_signs_warning = {'text': '⚠️', 'icon': '/path/to/some/icon'}
+#   let g:lsp_diagnostics_signs_error            = {'text': '❌'}
+#   let g:lsp_diagnostics_signs_warning          = {'text': '⚠️'}
+#   let g:lsp_diagnostics_signs_information      = {'text': '❓'}
+#   let g:lsp_diagnostics_signs_hint             = {'text': '💡'}
+# '''
+# hook_post_source = '''
+#   highlight link LspWarningHighlight Error
+# '''
+# repo = 'mattn/vim-lsp-settings'
 
 # LSP-lightline bridge
-[[plugins]]
-repo = 'halkn/lightline-lsp'
+# [[plugins]]
+# repo = 'halkn/lightline-lsp'
 
-# Auto completion
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete.vim'
-
-# Auto completion for LSP
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete-lsp.vim'
-
+# # Auto completion
+# [[plugins]]
+# repo = 'prabirshrestha/asyncomplete.vim'
+# 
+# # Auto completion for LSP
+# [[plugins]]
+# repo = 'prabirshrestha/asyncomplete-lsp.vim'
+# 
 [[plugins]]
 hook_add = '''
   function! Fileformat() 
@@ -222,33 +201,6 @@ hook_add = '''
 repo = 'itchyny/lightline.vim'
 
 [[plugins]]
-repo = 'vim-denops/denops.vim'
-
-[[plugins]]
-repo = 'Shougo/pum.vim'
-
-[[plugins]]
-repo = 'Shougo/ddc-around'
-
-[[plugins]]
-repo = 'LumaKernel/ddc-file'
-
-[[plugins]]
-repo = 'Shougo/ddc-matcher_head'
-
-[[plugins]]
-repo = 'Shougo/ddc-sorter_rank'
-
-[[plugins]]
-repo = 'Shougo/ddc-converter_remove_overlap'
-
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
-
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-
-[[plugins]]
 repo = 'cohama/lexima.vim'
 
 [[plugins]]
@@ -257,32 +209,3 @@ let g:python_style = 'google'
 nmap gd :Docstring<CR>
 '''
 repo = 'pixelneo/vim-python-docstring'
-
-[[plugins]]
-hook_post_source = '''
-  call ddc#custom#patch_global('completionMenu', 'pum.vim')
-  call ddc#custom#patch_global('sources', [
-    \ 'around',
-    \ 'vim-lsp',
-    \ 'file',
-    \ ])
-  call ddc#custom#patch_global('sourceOptions', {
-    \ '_': {
-    \   'matchers': ['matcher_head'],
-    \   'sorters': ['sorter_rank'],
-    \   'converters': ['converter_remove_overlap'],
-    \ },
-    \ 'around': {'mark': 'Around'},
-    \ 'vim-lsp': {
-    \   'mark': 'LSP', 
-    \   'matchers': ['matcher_head'],
-    \   'forceCompletionPattern': '\.|:|->|"\w+/*'
-    \ },
-    \ 'file': {
-    \   'mark': 'FILE',
-    \   'isVolatile': v:true, 
-    \   'forceCompletionPattern': '\S/\S*'
-    \ }
-    \ })
-'''
-repo = 'Shougo/ddc.vim'
