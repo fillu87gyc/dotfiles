@@ -1,34 +1,33 @@
 set -eu
 export USERNAME=icd
-# sudo apt-get update -y && sudo apt-get upgrade -y
-# sudo  apt-get -y install   \
-# 	bat   \
-# 	clang   \
-# 	curl   \
-# 	fish   \
-# 	fzf   \
-# 	gist   \
-# 	hub   \
-# 	jq   \
-# 	neovim   \
-# 	nnn   \
-# 	nodejs   \
-# 	npm   \
-# 	sed   \
-# 	tig   \
-# 	tmux   \
-# 	tree   \
-# 	vim   \
-# 	wget   \
-# 	zsh   \
-# 	peco   \
-# 	xclip \
-# 	python3-pip
-# curl https://sh.rustup.rs -sSf > /tmp/rust_init.sh &&  \
-# 	chmod 755 /tmp/rust_init.sh  &&  \
-# 	/tmp/rust_init.sh -y > /dev/null 2>&1 &&  \
-# 	. ~/.cargo/env > /dev/null 2>&1 &&  \
-# 	$HOME/.cargo/bin/cargo install exa ripgrep 
+sudo apt-get update -y && sudo apt-get upgrade -y
+sudo  apt-get -y install   \
+	bat   \
+	clang   \
+	curl   \
+	fzf   \
+	gist   \
+	hub   \
+	jq   \
+	neovim   \
+	nnn   \
+	nodejs   \
+	npm   \
+	sed   \
+	tig   \
+	tmux   \
+	tree   \
+	vim   \
+	wget   \
+	zsh   \
+	peco   \
+	xclip \
+	python3-pip
+curl https://sh.rustup.rs -sSf > /tmp/rust_init.sh &&  \
+	chmod 755 /tmp/rust_init.sh  &&  \
+	/tmp/rust_init.sh -y > /dev/null 2>&1 &&  \
+	. ~/.cargo/env > /dev/null 2>&1 &&  \
+	$HOME/.cargo/bin/cargo install ripgrep exa
 export TERM=xterm-256color  \
 	COLORTERM=truecolor  \
 	XDG_CONFIG_HOME=$HOME/.config  \
@@ -61,7 +60,7 @@ sh ./installer.sh /home/icd/.cache/dein
 nvim +"UpdateRemotePlugins" +qall
 cd /home/icd
 # #-------p10k------
-ln -sf $HOME/dotfiles/zsh/.p10k4docker.zsh /home/icd/.p10k.zsh
+ln -sf $HOME/dotfiles/zsh/.p10k.zsh /home/icd/.p10k.zsh
 mkdir -p /home/icd/.cache/gitstatus
 #-------misc--------
 ln -sf $HOME/dotfiles/git/.gitconfig /home/icd/.gitconfig
@@ -106,4 +105,4 @@ ln -sf $HOME/dotfiles/zsh/.zprofile /home/icd/.zprofile
 ln -sf $HOME/dotfiles/zsh/.zshrc /home/icd/.zshrc
 ln -sf $HOME/dotfiles/zsh/gitstatusd-linux-x86_64 /home/icd/.cache/gitstatus/
 sudo chown icd:icd /home/icd/.config
-echo ============== Finish!!!! ==============
+echo '============== Finish!!!! =============='

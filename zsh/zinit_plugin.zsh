@@ -14,9 +14,7 @@ zinit snippet OMZP::git # <- なんかおまじないらしい
 zinit for \
     light-mode  zsh-users/zsh-autosuggestions \
     light-mode  z-shell/fast-syntax-highlighting \
-                z-shell/history-search-multi-word \
-    # light-mode pick"async.zsh" src"pure.zsh" \
-    #             sindresorhus/pure
+    light-mode  z-shell/H-S-MW 
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 zinit ice depth=1; zinit light paulirish/git-open
 zinit ice depth=1; zinit light supercrabtree/k
