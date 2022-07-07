@@ -7,22 +7,23 @@ source ~/.config/zsh/completion.zsh
 source ~/.config/functions/ghq-sel.zsh
 source ~/.config/functions/p10k_seg.zsh
 source ~/.config/functions/fzf-z-search.zsh
+source ~/.config/functions/nnn-preview.sh
 source ~/.config/functions/pacman-install-selector.zsh
 source ~/.config/zsh/cd_push.zsh
-# source /opt/ros/rolling/setup.zsh
 alias ll='exa -lahHg --git --git-ignore --tree -L 2 --icons -I \.git'
 alias lll='exa -lahHg --git --git-ignore --tree -L 2 --icons --color=always |less -R'
 alias lld='exa -lahHDg --git --git-ignore --tree -L 2 --icons'
 alias vi='nvim'
 alias so='source'
+alias cat='batcat'
 alias bat='batcat'
-alias cat='bat'
 alias python='python3'
 alias pip='pip3'
 alias tmux='tmux -u'
 alias rgh='rg -uu' # 隠しファイルとかgitignoreを検索範囲に入れる
 alias g='git'
 alias k='k -A' # 隠しファイルを含める
+alias h='nnn-preview -H'
 autoload -Uz compinit && compinit
 setopt auto_cd
 export PATH=$HOME/.gem/ruby/2.7.0/bin:$PATH
@@ -62,13 +63,6 @@ setopt EXTENDED_HISTORY
 alias juman='juman -r /usr/local/etc/jumanrc'
 alias jn="jupyter-notebook &"
 eval "$(gh completion -s zsh)"
-alias rd='
-docker run\
-  --rm -it \
-  --volume /home/icd/dev_ws:/home/icd/dev_ws \
-  --workdir /home/icd/dev_ws \
-  icduser2022/ros2 zsh --login'
-
 if [ -e /opt/ros/foxy/setup.zsh  ]; then
   source /opt/ros/foxy/setup.zsh 
 fi

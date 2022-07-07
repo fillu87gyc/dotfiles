@@ -2,26 +2,26 @@ set -eu
 export USERNAME=icd
 sudo apt-get update -y && sudo apt-get upgrade -y
 sudo  apt-get -y install   \
-	bat   \
-	clang   \
-	curl   \
-	fzf   \
-	gist   \
-	hub   \
-	jq   \
-	neovim   \
-	nnn   \
-	nodejs   \
-	npm   \
-	sed   \
-	tig   \
-	tmux   \
-	tree   \
-	vim   \
-	wget   \
-	zsh   \
-	peco   \
-	xclip \
+	bat         \ 
+	clang       \ 
+	curl        \ 
+	fzf         \ 
+	gist        \ 
+	hub         \ 
+	jq          \
+	neovim      \
+	nnn         \ 
+	nodejs      \
+	npm         \ 
+	sed         \ 
+	tig         \ 
+	tmux        \ 
+	tree        \ 
+	vim         \ 
+	wget        \ 
+	zsh         \ 
+	peco        \ 
+	xclip       \ 
 	python3-pip
 curl https://sh.rustup.rs -sSf > /tmp/rust_init.sh &&  \
 	chmod 755 /tmp/rust_init.sh  &&  \
@@ -100,9 +100,16 @@ sudo apt-get update                                                            &
 sudo apt-get install gh
 curl -fsSL https://deno.land/install.sh | sh
 pip install -U flake8 flake8-import-order autopep8 black isort rich --no-warn-script-location
+sudo apt install python3.8-venv -y
 mv /home/icd/.zshrc /home/icd/.zinit_install.zsh
 ln -sf $HOME/dotfiles/zsh/.zprofile /home/icd/.zprofile
 ln -sf $HOME/dotfiles/zsh/.zshrc /home/icd/.zshrc
 ln -sf $HOME/dotfiles/zsh/gitstatusd-linux-x86_64 /home/icd/.cache/gitstatus/
 sudo chown icd:icd /home/icd/.config
-echo '============== Finish!!!! =============='
+ghq get https://github.com/jarun/nnn
+cd $HOME/src/github.com/jarun/nnn &&\
+    make O_NERD=1
+wget https://github.com/high-moctane/mocword-data/releases/download/eng20200217/mocword.sqlite.gz &&\
+    gzip -d mocword.sqlite.gz &&\
+    mv mocword.sqlite $MOCWORD_DATA &&\
+    cargo install mocword
