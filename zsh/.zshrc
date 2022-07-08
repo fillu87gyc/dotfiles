@@ -45,7 +45,7 @@ export FZF_CTRL_T_COMMAND=$FZF_FIND_FILE_COMMAND
 export FZF_CTRL_T_OPTS=$FZF_FIND_OPTS
 export FZF_ALT_C_COMMAND=$FZF_CD_COMMAND
 export FZF_ALT_C_OPTS=$FZF_CD_OPTS
-
+export NNN_OPENER=$HOME/dotfiles/shell/nnn_opener.sh
 export FZF_TMUX=1
 export FZF_TMUX_HEIGHT=70%
 
