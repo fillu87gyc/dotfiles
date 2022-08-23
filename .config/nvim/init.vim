@@ -15,6 +15,8 @@ set showtabline=2             " タブライン出していこうぜ
 set ambiwidth=single
 let mapleader ="\<Space>"
 
+set encoding=utf-8
+set fileencodings=utf-8
 set colorcolumn=65,80
 highlight ColorColumn guibg=#002020 ctermbg=23
 

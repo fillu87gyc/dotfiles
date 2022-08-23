@@ -209,3 +209,6 @@ let g:python_style = 'google'
 nmap gd :Docstring<CR>
 '''
 repo = 'pixelneo/vim-python-docstring'
+
+[[plugins]]
+repo = 'OmniSharp/omnisharp-vim'
