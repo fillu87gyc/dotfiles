@@ -14,6 +14,8 @@ set incsearch
 set showtabline=2             " タブライン出していこうぜ
 set ambiwidth=single
 let mapleader ="\<Space>"
+imap <silent> <F1> <C-R>=strftime("%Y-%m-%d")<CR>
+imap <silent> <F2> <C-R>=strftime("%Y-%m-%d (%a)")<CR>
 
 set encoding=utf-8
 set fileencodings=utf-8

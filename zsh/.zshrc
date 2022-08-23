@@ -49,6 +49,8 @@ export NNN_OPENER=$HOME/dotfiles/shell/nnn_opener.sh
 export FZF_TMUX=1
 export FZF_TMUX_HEIGHT=70%
 
+export EDITOR='nvim'
+
 source ~/.zinit_install.zsh
 
 export HISTFILE=~/.zsh_history
