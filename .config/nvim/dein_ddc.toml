@@ -70,7 +70,7 @@ on_source = 'ddc.vim'
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
 on_event = 'BufEnter'
-hook_source= '''
+hook_source = '''
 lua << EOF
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...)
@@ -100,8 +100,6 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
   }
 end
 EOF
-'''
-hook_add = '''
 " autoformat
 autocmd BufWritePre *.py lua vim.lsp.buf.format(nil, 1000)
 '''
