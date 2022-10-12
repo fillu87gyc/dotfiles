@@ -1,65 +1,65 @@
 [user]
-  name  = ISHIYAMA TOMOYA
-  email = ishiyama.tomoya.gl@tut.jp
+    name = ISHIYAMA TOMOYA
+    email = ishiyama.tomoya.gl@tut.jp
 
 [alias]
-  st      = status
-  cho     = checkout
-  chob    = checkout -b
-  b       = branch
-  p       = push
-  c       = commit
-  grh     = !"git log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(bold white)%s%C(reset)  %C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative --color|less -r -R "
-  mg      = merge
-  ff      = merge --ff
-  pin     = push -u origin
-  rename  = commit --amend
-  lg      = log
-  l       = log
-  rereset = reset --hard HEAD@{1}
-  delcm   = reset --soft HEAD^
-  a       = add .
-  deladd  = reset HEAD
-  d       = diff
+    st = status
+    cho = checkout
+    chob = checkout -b
+    b = branch
+    p = push
+    c = commit
+    grh = !"git log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(bold white)%s%C(reset)  %C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative --color|less -r -R "
+    mg = merge
+    ff = merge --ff
+    pin = push -u origin
+    rename = commit --amend
+    lg = log
+    l = log
+    rereset = reset --hard HEAD@{1}
+    delcm = reset --soft HEAD^
+    a = add .
+    deladd = reset HEAD
+    d = diff
 [push]
-  default = simple
+    default = simple
 
 [core]
-  autoCRLF = false
-  editor = "/usr/bin/nvim"
-	quotepath = false
+    autoCRLF = false
+    editor = "/usr/bin/nvim"
+    quotepath = false
 
 [commit]
-  template =    ~/.config/git/commit_template
+    template = ~/.config/git/commit_template
 
 [init]
-templatedir = ~/.config/git
-defaultBranch = master
-  
+    templatedir = ~/.config/git
+    defaultBranch = master
+
 
 [ghq]
-  root = ~/src
+    root = ~/src
 
 [merge]
-  ff = false
+    ff = false
 
 [pull]
-  ff = only
+    ff = only
 [credential "https://github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
+    helper = 
+    helper = !/usr/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
+    helper = 
+    helper = !/usr/bin/gh auth git-credential
 [credential]
-	helper = 
-	helper = /usr/local/share/gcm-core/git-credential-manager-core
-	credentialStore = secretservice
+    helper = 
+    helper = /usr/local/share/gcm-core/git-credential-manager-core
+    credentialStore = secretservice
 [credential "https://dev.azure.com"]
-	useHttpPath = true
+    useHttpPath = true
 [credential "https://git.icd.cs.tut.ac.jp"]
-	provider = generic
+    provider = generic
 [credential "http://git.icd.cs.tut.ac.jp"]
-	provider = generic
+    provider = generic
 [http]
-	postBuffer = 524288000
+    postBuffer = 524288000
