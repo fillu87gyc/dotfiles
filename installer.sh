@@ -5,7 +5,6 @@ set -eu
 ln -sf $HOME/dotfiles/zsh/.p10k.zsh /home/icd/.p10k.zsh
 mkdir -p /home/icd/.cache/gitstatus
 #-------misc--------
-ln -sf $HOME/dotfiles/git/.gitconfig /home/icd/.gitconfig
 ln -sf $HOME/dotfiles/.config/tmux/.tmux.conf /home/icd/.tmux.conf
 mkdir -p $HOME/.config/zsh/
 mkdir -p $HOME/.zinit/
@@ -13,6 +12,10 @@ mkdir -p $HOME/.zinit/
 ln -sf $HOME/dotfiles/zsh/completion.zsh   /home/icd/.config/zsh/completion.zsh
 ln -sf $HOME/dotfiles/zsh/key-bindings.zsh /home/icd/.config/zsh/key-bindings.zsh
 ln -sf $HOME/dotfiles/zsh/zinit_plugin.zsh /home/icd/.zinit/zinit_plugin.zsh
+echo 'source /home/icd/.zinit/zinit_plugin.zsh' >> /home/icd/.zshrc
+SHELL=/bin/zsh zsh -i -c -- 'zinit module build;zinit self-update'
+
+
 ln -sf $HOME/dotfiles/zsh/cd_push.zsh      /home/icd/.config/zsh/cd_push.zsh
 ln -sf $HOME/dotfiles/.config/functions    /home/icd/.config/functions
 

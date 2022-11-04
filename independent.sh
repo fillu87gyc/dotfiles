@@ -27,6 +27,7 @@ sudo apt-get -y update
 sudo apt-get -y install golang unzip
 go install github.com/x-motemen/ghq@latest
 
+ln -sf $HOME/dotfiles/git/.gitconfig /home/icd/.gitconfig
 $HOME/go/bin/ghq get https://github.com/jarun/nnn
 cd $HOME/src/github.com/jarun/nnn &&\
     sudo apt-get install libreadline-dev -y &&\
@@ -66,9 +67,6 @@ fi
 
 mkdir -p $HOME/.config/
 bash -c "$(curl -fsSL https://git.io/zinit-install)"
-echo 'source /home/icd/.zinit/zinit_plugin.zsh' >> /home/icd/.zshrc
-	SHELL=/bin/zsh zsh -i -c -- 'zinit module build;zinit self-update'
-
 sudo npm install -g n
 sudo n latest
 git clone --depth 1 https://github.com/rupa/z /home/icd/z &&\

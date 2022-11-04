@@ -64,7 +64,6 @@ export SAVEHIST=100000
 setopt EXTENDED_HISTORY
 alias juman='juman -r /usr/local/etc/jumanrc'
 alias jn="jupyter-notebook &"
-eval "$(gh completion -s zsh)"
 if [ -e /opt/ros/foxy/setup.zsh  ]; then
   source /opt/ros/foxy/setup.zsh
 fi

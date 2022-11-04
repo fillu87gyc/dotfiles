@@ -5,3 +5,12 @@ let g:context_filetype#ignore_patterns = {
     \ }
 '''
 repo = 'Shougo/context_filetype.vim'
+
+
+[[plugins]]
+repo = 'nvie/vim-flake8'
+on_ft = ['python']
+
+[[plugins]]
+repo = 'tell-k/vim-autopep8'
+on_ft = ['python']
