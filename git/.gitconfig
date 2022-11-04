@@ -36,7 +36,6 @@
     templatedir = ~/.config/git
     defaultBranch = master
 
-
 [ghq]
     root = ~/src
 
