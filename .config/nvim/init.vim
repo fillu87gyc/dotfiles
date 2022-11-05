@@ -17,6 +17,8 @@ let mapleader ="\<Space>"
 imap <silent> <F1> <C-R>=strftime("%Y-%m-%d")<CR>
 imap <silent> <F2> <C-R>=strftime("%Y-%m-%d (%a)")<CR>
 
+" set termguicolors
+
 set encoding=utf-8
 set fileencodings=utf-8
 set colorcolumn=65,80
@@ -56,15 +58,12 @@ nnoremap <silent><Esc><Esc> :<C-u>set nohlsearch!<CR>
 
 "--Undoをできるように
 if has('persistent_undo')
-  set undodir=$XDG_CONFIG_HOME/nvim/undo
+  set undodir=/tmp/nvim/undo
   set undofile
 endif
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 nnoremap <leader><C-i> :tabnext<CR>
 nnoremap <leader><leader><C-i> :tabclose<CR>
-
-autocmd BufNewFile,BufRead *.toml setfiletype toml
 
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -75,5 +74,13 @@ let g:python3_host_prog = '/usr/bin/python3'
 
 nmap <F5> :!python3 %<CR>
 source ~/.config/nvim/.vim/dein_config.vim
-colorscheme hybrid
+source ~/.config/nvim/.vim/SyntaxInfo.vim
 
+autocmd ColorScheme * highlight Statement ctermfg=11
+
+colorscheme nord
+let g:nord_cursor_line_number_background = 1
+let g:nord_uniform_diff_background = 1
+let g:nord_italic = 1
+let g:nord_italic_comments = 1
+let g:nord_underline = 1

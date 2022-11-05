@@ -41,9 +41,6 @@ repo = 'tyru/caw.vim'
 repo = 'Shougo/vimproc.vim'
 
 [[plugins]]
-repo = 'yonchu/accelerated-smooth-scroll'
-
-[[plugins]]
 build = './install --bin'
 repo = 'junegunn/fzf'
 
@@ -51,7 +48,7 @@ repo = 'junegunn/fzf'
 depends = 'fzf'
 hook_add = '''
   let g:fzf_layout = { 'up': '~60%' }
-  
+
   let g:fzf_action = {
   \ 'Enter' : 'tab split',
   \ 'ctrl-t': 'tab split',
@@ -74,29 +71,13 @@ hook_add = '''
 repo = 'junegunn/fzf.vim'
 
 [[plugins]]
-repo = 'ryanoasis/vim-devicons'
-
-[[plugins]]
 repo = 'tpope/vim-surround'
 
-# [[plugins]]
-# hook_add = '''
-#   nnoremap <silent> <Leader>i :IndentGuidesToggle<CR>
-#   let g:indent_guides_enable_on_vim_startup = 1
-#   let g:indent_guides_start_level = 2
-#   let g:indent_guides_guide_size = 1
-#   " let g:indent_guides_auto_colors = 0
-#   " autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=237
-#   " autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=235
-# '''
-# repo = 'nathanaelkane/vim-indent-guides'
-# 
 [[plugins]]
 repo = 'Yggdroot/indentLine'
 hook_add = '''
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 '''
- 
 
 [[plugins]]
 hook_add = '''
@@ -105,70 +86,34 @@ hook_add = '''
 on_ft = ['python']
 repo = 'fisadev/vim-isort'
 
-# # LSP settings
-# [[plugins]]
-# hook_add = '''
-#   " Enable flake8 and mypy
-#   let g:lsp_settings = {
-#   \  'pylsp-all': {
-#   \    'workspace_config': {
-#   \      'pylsp': {
-#   \        'configurationSources': ['flake8'],
-#   \        'plugins': {
-#   \          'pylsp_mypy': {
-#   \            'enabled': 1
-#   \          }
-#   \        }
-#   \      }
-#   \    }
-#   \  }
-#   \}
-#   let g:lsp_signs_hint = {'text': '💡'}
-#   let g:lsp_signs_error = {'text': '❌'}
-#   let g:lsp_signs_warning = {'text': '⚠️', 'icon': '/path/to/some/icon'}
-#   let g:lsp_diagnostics_signs_error            = {'text': '❌'}
-#   let g:lsp_diagnostics_signs_warning          = {'text': '⚠️'}
-#   let g:lsp_diagnostics_signs_information      = {'text': '❓'}
-#   let g:lsp_diagnostics_signs_hint             = {'text': '💡'}
-# '''
-# hook_post_source = '''
-#   highlight link LspWarningHighlight Error
-# '''
-# repo = 'mattn/vim-lsp-settings'
-
-# LSP-lightline bridge
-# [[plugins]]
-# repo = 'halkn/lightline-lsp'
-
-# # Auto completion
-# [[plugins]]
-# repo = 'prabirshrestha/asyncomplete.vim'
-# 
-# # Auto completion for LSP
-# [[plugins]]
-# repo = 'prabirshrestha/asyncomplete-lsp.vim'
-# 
 [[plugins]]
 hook_add = '''
-  function! Fileformat() 
+  function! Fileformat()
     return &buftype ==# 'terminal' || &filetype =~# 'denite\|tagbar' ? '' :
           \ winwidth(0) > 120 ? &fileformat . (exists('*WebDevIconsGetFileFormatSymbol') ? ' ' . WebDevIconsGetFileFormatSymbol() : '') : ''
   endfunction
 
-  function! Filetype() 
+  function! Filetype()
     return &buftype ==# 'terminal' || &filetype =~# 'denite\|tagbar' ? '' :
           \ winwidth(0) > 120 ? (strlen(&filetype) ? &filetype . (exists('*WebDevIconsGetFileTypeSymbol') ? ' ' . WebDevIconsGetFileTypeSymbol() : '') : 'no ft') : ''
   endfunction
 
-  function! Fileencoding() 
+  function! Fileencoding()
     return &buftype ==# 'terminal' || &filetype =~# 'denite\|tagbar' ? '' :
           \ winwidth(0) > 120 ? (strlen(&fileencoding) ? &fileencoding : &encoding) : ''
   endfunction
 
+  function! GitBranch()
+    let icon = "\ue0a0 "
+    let branch = gitbranch#name()
+    return icon . branch
+  endfunction
+
     let g:lightline = {
+    \ 'colorscheme': 'nord',
     \ 'active': {
     \     'left': [ [ 'mode', 'paste' ],
-    \               [ 'readonly', 'filename', 'modified' ] ],
+    \               [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
     \     'right':[ [ 'lineinfo' ],
     \               [ 'percent' ],
     \               [ 'fileformat', 'fileencoding', 'filetype' ],
@@ -182,6 +127,7 @@ hook_add = '''
     \    'lineinfo': '並%3l:%-2v'
     \  },
     \  'component_function': {
+    \    'gitbranch':    'GitBranch',
     \    'fileformat':   'Fileformat',
     \    'filetype':     'Filetype',
     \    'fileencoding': 'Fileencoding',
@@ -196,9 +142,14 @@ hook_add = '''
     \   'lsp_errors':   'error',
     \   'lsp_ok':       'middle',
     \ },
+    \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+    \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
     \ }
 '''
 repo = 'itchyny/lightline.vim'
+
+[[plugins]]
+repo = 'itchyny/vim-gitbranch'
 
 [[plugins]]
 repo = 'cohama/lexima.vim'
@@ -211,4 +162,4 @@ nmap gd :Docstring<CR>
 repo = 'pixelneo/vim-python-docstring'
 
 [[plugins]]
-repo = 'OmniSharp/omnisharp-vim'
+repo = 'arcticicestudio/nord-vim'
