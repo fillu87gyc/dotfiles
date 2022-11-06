@@ -9,7 +9,6 @@ COPY --chown=${USERNAME}:${USERNAME} independent.sh   /independent.sh
 RUN /independent.sh
 RUN git clone https://github.com/tmux-plugins/tpm    /home/icd/.tmux/plugins/tpm
 COPY --chown=${USERNAME}:${USERNAME} .config	     /home/${USERNAME}/dotfiles/.config
-COPY --chown=${USERNAME}:${USERNAME} .dockerignore   /home/${USERNAME}/dotfiles/.dockerignore
 COPY --chown=${USERNAME}:${USERNAME} .gitignore      /home/${USERNAME}/dotfiles/.gitignore
 COPY --chown=${USERNAME}:${USERNAME} .vs             /home/${USERNAME}/dotfiles/.vs
 COPY --chown=${USERNAME}:${USERNAME} shell           /home/${USERNAME}/dotfiles/shell
@@ -18,5 +17,6 @@ COPY --chown=${USERNAME}:${USERNAME} zsh             /home/${USERNAME}/dotfiles/
 COPY --chown=${USERNAME}:${USERNAME} installer.sh   /installer.sh
 RUN /installer.sh
 RUN rm /home/icd/.config/nvim/undo/*
+RUN pip install powerline-mem-segment psutil
 RUN sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*
 CMD /bin/zsh --login

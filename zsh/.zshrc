@@ -1,6 +1,11 @@
-# source ~/app/powerlevel10k/powerlevel10k.zsh-theme
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 source ~/z/z.sh
-source ~/.p10k.zsh
 export POWERLEVEL9K_DISABLE_GITSTATUS=true
 source ~/.config/zsh/key-bindings.zsh
 source ~/.config/zsh/completion.zsh
@@ -73,3 +78,5 @@ if [ -e  $HOME/dev_ws/install/setup.zsh ]; then
 fi
 
 export MOCWORD_DATA=$HOME/.local/lib/mocword.sqlite
+
+[[ ! -f ~/dotfiles/zsh/.p10k.zsh ]] || source ~/dotfiles/zsh/.p10k.zsh
