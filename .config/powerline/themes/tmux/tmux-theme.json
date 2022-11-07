@@ -3,7 +3,7 @@
         "right": [
             {
                 "function": "powerlinemem.mem_usage.mem_usage_percent",
-                "before": "\ue266 ",
+                "before": "\ue266  ",
                 "priority": 50
             },
             {
