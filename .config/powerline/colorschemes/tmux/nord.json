@@ -229,12 +229,12 @@
 		"mem_usage_gradient": "mem_usage",
 		"active_window_status": {
 			"fg": "darkblue",
-			"bg": "nord14",
+			"bg": "nord1",
 			"attrs": []
 		},
 		"window_status": {
 			"fg": "gray70",
-			"bg": "nord11",
+			"bg": "nord1",
 			"attrs": []
 		},
 		"activity_status": {
@@ -244,7 +244,7 @@
 		},
 		"bell_status": {
 			"fg": "red",
-			"bg": "nord15",
+			"bg": "nord1",
 			"attrs": []
 		},
 		"window": {
