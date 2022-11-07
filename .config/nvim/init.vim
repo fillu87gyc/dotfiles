@@ -17,7 +17,7 @@ let mapleader ="\<Space>"
 imap <silent> <F1> <C-R>=strftime("%Y-%m-%d")<CR>
 imap <silent> <F2> <C-R>=strftime("%Y-%m-%d (%a)")<CR>
 
-" set termguicolors
+set termguicolors
 
 set encoding=utf-8
 set fileencodings=utf-8

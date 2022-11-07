@@ -4,7 +4,7 @@
     },
     "ext": {
         "tmux": {
-            "colorscheme": "tmux-colorscheme",
+            "colorscheme": "nord",
             "theme": "tmux-theme"
         }
     }

@@ -77,6 +77,7 @@ repo = 'tpope/vim-surround'
 repo = 'Yggdroot/indentLine'
 hook_add = '''
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:vim_json_conceal=0 
 '''
 
 [[plugins]]

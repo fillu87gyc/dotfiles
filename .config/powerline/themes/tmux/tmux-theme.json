@@ -2,27 +2,14 @@
     "segments": {
         "right": [
             {
-                "function": "powerlinemem.mem_usage.mem_usage",
-                "before": "MEM: ",
-                "args": {
-                    "short": true
-                },
+                "function": "powerlinemem.mem_usage.mem_usage_percent",
+                "before": "\ue266 ",
                 "priority": 50
             },
             {
                 "function": "powerline.segments.common.sys.cpu_load_percent",
-                "before": "CPU: ",
+                "before": "\uf0e4  ",
                 "priority": 50
-            },
-            {
-                "function": "powerline.segments.common.net.network_load",
-                "args": {
-                    "recv_format": " \uf0ab {value:>8}",
-                    "sent_format": " \uf0aa {value:>8}",
-                    "recv_max": 1000000,
-                    "sent_max": 1000000
-                },
-                "priority": 100
             },
             {
                 "function": "powerline.segments.common.bat.battery",
@@ -31,20 +18,21 @@
             {
                 "function": "powerline.segments.common.time.date",
                 "args": {
-                  "format": "%Y/%m/%d(%a)"
-                },
-                "priority": 10
-            },
-            {
-                "function": "powerline.segments.common.time.date",
-                "args": {
-                    "format": "%H:%M",
+                    "format": "%m/%d %H:%M",
                     "istime": true
                 },
+                "before": "\uf455 ",
                 "priority": 10
             },
             {
-                "function": "powerline.segments.common.env.user",
+                "function":"powerline.segments.common.net.internal_ip",
+                "before": "\uf968 ",
+
+                "priority": 10
+            },
+            {
+                "function":"powerline.segments.common.net.hostname",
+                "before": "\uf821 ",
                 "priority": 10
             }
         ]
