@@ -1,0 +1,63 @@
+[[plugins]]
+repo = 'williamboman/mason.nvim'
+hook_add = '''
+lua << EOF
+local mason = require('mason')
+mason.setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+
+local nvim_lsp = require('lspconfig')
+local mason_lspconfig = require('mason-lspconfig')
+mason_lspconfig.setup_handlers({ function(server_name)
+    local opts = {}
+    opts.on_attach = function(_, bufnr)
+        local bufopts = { silent = true, buffer = bufnr }
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+        vim.keymap.set('n', 'gtD', vim.lsp.buf.type_definition, bufopts)
+        vim.keymap.set('n', 'grf', vim.lsp.buf.references, bufopts)
+        vim.keymap.set('n', '<space>p', vim.lsp.buf.format, bufopts)
+    end
+    nvim_lsp[server_name].setup(opts)
+end })
+EOF
+
+
+let g:lsp_settings = {
+\  'pylsp-all': {
+\    'workspace_config': {
+\      'pylsp': {
+\        'configurationSources': ['flake8'],
+\        'plugins': {
+\          'flake8': {
+\            'enabled': 1
+\          },
+\          'mccabe': {
+\            'enabled': 0
+\          },
+\          'pycodestyle': {
+\            'enabled': 0
+\          },
+\          'pyflakes': {
+\            'enabled': 0
+\          },
+\        }
+\      }
+\    }
+\  }
+\}
+
+'''
+depends = [ 'mason-lspconfig.nvim', 'nvim-lspconfig']
+
+[[plugins]]
+repo = 'williamboman/mason-lspconfig.nvim'
+
+[[plugins]]
+repo = 'neovim/nvim-lspconfig'
