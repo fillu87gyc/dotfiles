@@ -77,10 +77,20 @@ source ~/.config/nvim/.vim/dein_config.vim
 source ~/.config/nvim/.vim/SyntaxInfo.vim
 
 autocmd ColorScheme * highlight Statement ctermfg=11
-
-colorscheme nord
 let g:nord_cursor_line_number_background = 1
 let g:nord_uniform_diff_background = 1
 let g:nord_italic = 1
 let g:nord_italic_comments = 1
 let g:nord_underline = 1
+colorscheme nord
+
+noremap K  <cmd>lua vim.lsp.buf.hover()<CR>
+noremap gr <cmd>lua vim.lsp.buf.references()<CR>
+noremap gd <cmd>lua vim.lsp.buf.definition()<CR>
+noremap ge <cmd>lua vim.lsp.buf.declaration()<CR>
+noremap gi <cmd>lua vim.lsp.buf.implementation()<CR>
+noremap gt <cmd>lua vim.lsp.buf.type_definition()<CR>
+noremap rn <cmd>lua vim.lsp.buf.rename()<CR>
+noremap ga <cmd>lua vim.lsp.buf.code_action()<CR>
+noremap ge <cmd>lua vim.diagnostic.open_float()<CR>
+noremap <c-j> <cmd>lua vim.diagnostic.goto_next()<CR>

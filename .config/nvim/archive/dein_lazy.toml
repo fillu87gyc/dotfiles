@@ -11,6 +11,4 @@ repo = 'Shougo/context_filetype.vim'
 repo = 'nvie/vim-flake8'
 on_ft = ['python']
 
-[[plugins]]
-repo = 'tell-k/vim-autopep8'
-on_ft = ['python']
+

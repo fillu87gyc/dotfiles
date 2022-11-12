@@ -1,0 +1,8 @@
+[[plugins]]
+repo = 'tell-k/vim-autopep8'
+on_ft = ['python']
+hook_source = '''
+let g:autopep8_aggressive=2
+let g:autopep8_disable_show_diff=1
+let g:autopep8_on_save = 1
+'''
