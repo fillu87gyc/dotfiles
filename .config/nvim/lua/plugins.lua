@@ -28,6 +28,8 @@ require("packer").startup(function()
     use 'neovim/nvim-lspconfig'
     use 'williamboman/mason.nvim'
     use 'williamboman/mason-lspconfig.nvim'
+    use 'jose-elias-alvarez/null-ls.nvim'
+    use "jayp0521/mason-null-ls.nvim"
 
     use "hrsh7th/nvim-cmp"
     use "hrsh7th/cmp-nvim-lsp"
