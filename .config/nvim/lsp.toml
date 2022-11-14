@@ -16,7 +16,7 @@ hook_add='''
 lua <<EOF
   require("mason-lspconfig").setup()
   require("mason-lspconfig").setup_handlers {
-    function (server_name) -- default handler (optional)
+    function (server_name)
       require("lspconfig").pylsp.setup{
         settings = {
             pylsp = {
@@ -39,3 +39,23 @@ EOF
 
 [[plugins]]
 repo = 'neovim/nvim-lspconfig'
+
+[[plugins]]
+repo = "jose-elias-alvarez/null-ls.nvim"
+depends = ['mason.nvim']
+
+[[plugins]]
+repo = "jayp0521/mason-null-ls.nvim"
+depends = [
+    'mason.nvim',
+    'null-ls.nvim'
+]
+hook_add = '''
+lua <<EOF
+require("null-ls").setup()
+require("mason-null-ls").setup({
+    automatic_setup = true,
+})
+EOF
+'''
+
