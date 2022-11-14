@@ -1,14 +1,17 @@
 -- Reference highlight
 vim.cmd [[
 set updatetime=500
-highlight LspReferenceText  gui=underline guifg=#E5E9F0 guibg=#4C566A
-highlight LspReferenceRead  gui=underline guifg=#A0A000 guibg=#104040
-highlight LspReferenceWrite gui=underline guifg=#A0A000 guibg=#104040
-augroup lsp_document_highlight
-  autocmd!
-  autocmd CursorHold,CursorHoldI * lua vim.lsp.buf.document_highlight()
-  autocmd CursorMoved,CursorMovedI * lua vim.lsp.buf.clear_references()
-augroup END
+    highlight LspReferenceText  gui=underline guifg=#E5E9F0 guibg=#4C566A
+    highlight LspReferenceRead  gui=underline guifg=#A0A000 guibg=#104040
+    highlight LspReferenceWrite gui=underline guifg=#A0A000 guibg=#104040
+]]
+
+vim.cmd [[
+    augroup lsp_document_highlight
+        autocmd!
+        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+    augroup END
 ]]
 
 vim.cmd [[

@@ -39,6 +39,25 @@ require("packer").startup(function()
     use 'arcticicestudio/nord-vim'
     use {
         'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+        requires = { 'kyazdani42/nvim-web-devicons' }
+    }
+    use {
+        'andymass/vim-matchup',
+        setup = function()
+            vim.g.matchup_matchparen_offscreen = { method = "popup" }
+        end,
+        requires = { 'nvim-treesitter/nvim-treesitter' }
+    }
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end,
+        requires = { 'nvim-treesitter/nvim-treesitter' }
+    }
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end,
+        requires = { 'nvim-treesitter/nvim-treesitter' }
     }
 end)

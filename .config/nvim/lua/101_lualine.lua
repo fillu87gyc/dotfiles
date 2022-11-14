@@ -6,17 +6,6 @@ local lualine = require('lualine')
 -- Color table for highlights
 -- stylua: ignore
 local colors = {
-    bg       = '#202328',
-    fg       = '#bbc2cf',
-    yellow   = '#ECBE7B',
-    cyan     = '#008080',
-    darkblue = '#081633',
-    green    = '#98be65',
-    orange   = '#FF8800',
-    violet   = '#a9a1e1',
-    magenta  = '#c678dd',
-    blue     = '#51afef',
-    red      = '#ec5f67',
     nord0    = '#2e3440',
     nord1    = '#3b4252',
     nord2    = '#434c5e',
@@ -32,8 +21,20 @@ local colors = {
     nord12   = '#d08770',
     nord13   = '#ebcb8b',
     nord14   = '#a3be8c',
-    nord15   = '#b48ead'
+    nord15   = '#b48ead',
+    bg       = '#202328',
+    fg       = '#bbc2cf',
+    yellow   = '#ECBE7B',
+    cyan     = '#008080',
+    darkblue = '#081633',
+    green    = '#98be65',
+    orange   = '#FF8800',
+    violet   = '#a9a1e1',
+    magenta  = '#c678dd',
+    blue     = '#51afef',
+    red      = '#ec5f67',
 }
+colors.bg = colors.nord1
 
 local conditions = {
     buffer_not_empty = function()
@@ -101,10 +102,10 @@ ins_left {
         local mode_color = {
             n = colors.nord2,
             i = colors.nord7,
-            v = colors.blue,
-            [''] = colors.blue,
+            v = colors.nord12,
+            [''] = colors.nord13,
             V = colors.blue,
-            c = colors.magenta,
+            c = colors.nord12,
             no = colors.red,
             s = colors.orange,
             S = colors.orange,
@@ -123,10 +124,10 @@ ins_left {
         local fg_mode_color = {
             n = colors.nord8,
             i = colors.nord3,
-            v = colors.blue,
+            v = colors.nord1,
             [''] = colors.blue,
             V = colors.blue,
-            c = colors.magenta,
+            c = colors.nord11,
             no = colors.red,
             s = colors.orange,
             S = colors.orange,
@@ -180,7 +181,6 @@ ins_left {
     end,
 }
 
-ins_right { 'progress', color = { fg = colors.fg, gui = 'bold' } }
 
 ins_left {
     -- Lsp server name .
@@ -214,8 +214,16 @@ ins_right {
 ins_right {
     'fileformat',
     fmt = string.upper,
-    icons_enabled = true, -- I think icons are cool but Eviline doesn't have them. sigh
+    icons_enabled = true,
     color = { fg = colors.green, gui = 'bold' },
+}
+
+ins_right {
+    'filetype',
+    colored = true, -- Displays filetype icon in color if set to true
+    icon_only = false, -- Display only an icon for filetype
+    icon = { 'X', align = 'right' },
+    color = { fg = colors.magenta, gui = 'bold' },
 }
 
 ins_right {
@@ -236,5 +244,6 @@ ins_right {
     cond = conditions.hide_in_width,
 }
 
+ins_right { 'progress', color = { fg = colors.fg, gui = 'bold' } }
 -- Now don't forget to initialize lualine
 lualine.setup(config)
