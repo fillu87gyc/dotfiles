@@ -25,13 +25,10 @@ vim.cmd([[
 vim.cmd [[packadd packer.nvim]]
 require("packer").startup(function()
     use 'wbthomason/packer.nvim'
-    use {
-        'williamboman/mason-lspconfig.nvim',
-        requires = {
-            "williamboman/mason.nvim",
-            "neovim/nvim-lspconfig"
-        }
-    }
+
+    use "williamboman/mason.nvim"
+    use 'williamboman/mason-lspconfig.nvim'
+    use "neovim/nvim-lspconfig"
     use 'jose-elias-alvarez/null-ls.nvim'
     use "jayp0521/mason-null-ls.nvim"
 
