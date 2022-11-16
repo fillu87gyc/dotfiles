@@ -58,9 +58,9 @@ require("packer").startup(function()
     }
     use {
         'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup()
-        end,
         requires = { 'nvim-treesitter/nvim-treesitter' }
     }
+    use 'kylechui/nvim-surround'
+    use 'lewis6991/gitsigns.nvim'
+    use 'dinhhuy258/git.nvim'
 end)

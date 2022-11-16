@@ -36,7 +36,21 @@ require('mason-lspconfig').setup_handlers({ function(server)
             }
         }
     end
-    require('lspconfig')[server].setup(opt)
+    local function on_attach(client, _)
+        if client.resolved_capabilities.document_highlight then
+            vim.cmd [[
+            augroup LspHighlight
+                autocmd!
+                autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+                autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+            augroup END
+            ]]
+        end
+    end
+
+    require('lspconfig')[server].setup(opt, {
+        on_attach = on_attach
+    })
 end })
 
 require("null-ls").setup()
