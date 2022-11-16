@@ -13,7 +13,6 @@ vim.keymap.set('n', '<Leader>v', 'bve', { silent = true })
 vim.keymap.set('i', 'jj', '<ESC>', { silent = true })
 vim.keymap.set('n', '<Leader>w', ':w<CR>', { silent = true })
 vim.keymap.set('n', 'qq', ':q<CR>', { silent = true })
-vim.keymap.set('n', '<Leader><C-i>', ':tabnext<CR>', { silent = true })
 vim.keymap.set('n', '<Esc><Esc>', ':<C-u>set nohlsearch!<CR>', { silent = true })
 
 vim.keymap.set('i', '<F1>', '<C-R>=strftime("%Y-%m-%d")<CR>', { silent = true })

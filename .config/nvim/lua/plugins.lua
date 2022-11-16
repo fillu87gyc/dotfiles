@@ -63,4 +63,15 @@ require("packer").startup(function()
     use 'kylechui/nvim-surround'
     use 'lewis6991/gitsigns.nvim'
     use 'dinhhuy258/git.nvim'
+
+    use {
+        'akinsho/bufferline.nvim',
+        tag = "v3.*",
+        requires = 'nvim-tree/nvim-web-devicons'
+    }
+
+    use({
+        "glepnir/lspsaga.nvim",
+        branch = "main",
+    })
 end)
