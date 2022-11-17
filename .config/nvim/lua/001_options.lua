@@ -13,5 +13,5 @@ vim.opt.ambiwidth = 'single'
 vim.opt.termguicolors = true
 vim.opt.colorcolumn = "80"
 vim.opt.hls = true
-
+vim.opt.signcolumn = 'yes'
 vim.g.mapleader = ' '
