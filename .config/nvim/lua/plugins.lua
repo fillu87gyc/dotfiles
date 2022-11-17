@@ -74,4 +74,10 @@ require("packer").startup(function()
         "glepnir/lspsaga.nvim",
         branch = "main",
     })
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.0',
+        requires = { { 'nvim-lua/plenary.nvim' } }
+    }
+
+    use "lukas-reineke/indent-blankline.nvim"
 end)
