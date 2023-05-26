@@ -90,4 +90,8 @@ require("packer").startup(function()
     use "lukas-reineke/indent-blankline.nvim"
     use 'heavenshell/vim-pydocstring'
     use "github/copilot.vim"
+    use { 'monaqa/dps-dial.vim',
+        require = { { 'vim-denops/denops.vim' } }
+    }
+    use "vim-denops/denops.vim"
 end)

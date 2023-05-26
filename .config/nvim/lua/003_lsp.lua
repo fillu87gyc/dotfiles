@@ -1,16 +1,3 @@
--- 1. LSP Sever management
--- local null_ls = require "null-ls"
--- null_ls.setup {
---     sources = {
---         null_ls.builtins.formatting.prettier.with {
---             prefer_local = "node_modules/.bin",
---         },
---     },
--- }
---
--- require("mason-null-ls").setup({
---     automatic_setup = true,
--- })
 vim.cmd [[
     set updatetime=300
     highlight LspReferenceText  cterm=underline ctermfg=1 ctermbg=8 gui=underline guifg=#A00000 guibg=#104040

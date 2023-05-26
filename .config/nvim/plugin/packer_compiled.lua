@@ -109,6 +109,16 @@ _G.packer_plugins = {
     path = "/Users/icd/.local/share/nvim/site/pack/packer/start/copilot.vim",
     url = "https://github.com/github/copilot.vim"
   },
+  ["denops.vim"] = {
+    loaded = true,
+    path = "/Users/icd/.local/share/nvim/site/pack/packer/start/denops.vim",
+    url = "https://github.com/vim-denops/denops.vim"
+  },
+  ["dps-dial.vim"] = {
+    loaded = true,
+    path = "/Users/icd/.local/share/nvim/site/pack/packer/start/dps-dial.vim",
+    url = "https://github.com/monaqa/dps-dial.vim"
+  },
   ["git.nvim"] = {
     loaded = true,
     path = "/Users/icd/.local/share/nvim/site/pack/packer/start/git.nvim",

@@ -17,3 +17,4 @@ vim.keymap.set('n', '<Esc><Esc>', ':<C-u>set nohlsearch!<CR>', { silent = true }
 
 vim.keymap.set('i', '<F1>', '<C-R>=strftime("%Y-%m-%d")<CR>', { silent = true })
 vim.keymap.set('i', '<F2>', '<C-R>=strftime("%Y-%m-%d (%a)")<CR>', { silent = true })
+vim.keymap.set('n', '<F3>', ':echo expand("%:p")<CR>', { silent = false })

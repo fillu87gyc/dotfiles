@@ -37,7 +37,7 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/go/bin:$PATH
 export PATH=$HOME/dotfiles/shell:$PATH
 export PATH=$HOME/.nodebrew/current/bin:$PATH
-
+export PATH=$HOME/.local/lib/jumanpp/bin:$PATH
 export XDG_CONFIG_HOME=~/.config
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --glob "!.git/*" 2> /dev/null'
 export FZF_DEFAULT_OPTS='--height 80% --reverse --border --preview "bat --color=always --style=header,grid --line-range :100 {}"'
@@ -88,4 +88,3 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(rbenv init - zsh)"
 # heroku autocomplete setup
 HEROKU_AC_ZSH_SETUP_PATH=/Users/icd/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
-

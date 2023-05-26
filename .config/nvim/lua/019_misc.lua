@@ -16,3 +16,9 @@ require('Comment').setup({
 require("nvim-surround").setup({
     -- Configuration here, or leave empty to use defaults
 })
+
+
+vim.cmd [[
+let g:dps_dial#augends#register#i = [ 'case' ]
+nmap cc "i<Plug>(dps-dial-increment)
+]]
